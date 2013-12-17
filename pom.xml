@@ -18,12 +18,12 @@
     <developerConnection>https://github.com/hgwood/battle-sopra-2014.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
-  
+
   <issueManagement>
     <url>https://github.com/hgwood/battle-sopra-2014/issues</url>
     <system>GitHub</system>
   </issueManagement>
-  
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -49,8 +49,13 @@
       <version>1.9.5</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>15.0</version>
+    </dependency>
   </dependencies>
-  
+
   <build>
     <plugins>
       <plugin>
@@ -62,7 +67,29 @@
           <target>1.7</target>
         </configuration>
       </plugin>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>fr.notfound.Main</mainClass>
+            </manifest>
+          </archive>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+        </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
-  
+
 </project>
