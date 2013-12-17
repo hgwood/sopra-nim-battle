@@ -3,7 +3,7 @@ package fr.notfound.url;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class UncheckedUrlFactory implements UrlFactory {
+public class UncheckedUrlProvider implements UrlProvider {
 
     @Override public URL get(String path) {
         try {

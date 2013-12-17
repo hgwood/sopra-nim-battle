@@ -3,11 +3,11 @@ package fr.notfound.url;
 import static java.lang.String.format;
 import java.net.URL;
 
-public class HardCodedStringFormatUrlProvider implements ArenaUrlProvider {
+public class HardCodedStringFormatUrlCatalog implements ArenaUrlCatalog {
     
-    public final UrlFactory factory;
+    public final UrlProvider factory;
 
-    public HardCodedStringFormatUrlProvider(UrlFactory factory) {
+    public HardCodedStringFormatUrlCatalog(UrlProvider factory) {
         this.factory = factory;
     }
 

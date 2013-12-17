@@ -2,12 +2,12 @@ package fr.notfound.url;
 
 import java.net.URL;
 
-public class RootedUrlFactory implements UrlFactory {
+public class RootedUrlProvider implements UrlProvider {
     
-    public final UrlFactory delegate;
+    public final UrlProvider delegate;
     public final String root;
 
-    public RootedUrlFactory(UrlFactory delegate, String root) {
+    public RootedUrlProvider(UrlProvider delegate, String root) {
         this.delegate = delegate;
         this.root = root;
     }

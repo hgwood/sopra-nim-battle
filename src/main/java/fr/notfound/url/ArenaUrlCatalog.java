@@ -2,7 +2,7 @@ package fr.notfound.url;
 
 import java.net.URL;
 
-public interface ArenaUrlProvider {
+public interface ArenaUrlCatalog {
     
     URL ping();
     URL teamId(String teamName, String password);

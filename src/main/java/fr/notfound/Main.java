@@ -14,9 +14,9 @@ public class Main {
     public static void main(String[] args) throws Exception {
         String root = "http://ec2-54-200-12-98.us-west-2.compute.amazonaws.com/csnbattlearena/webservices/test/";
         Arena arena = new OfficialArena(
-            new HardCodedStringFormatUrlProvider(
-                new RootedUrlFactory(
-                    new UncheckedUrlFactory(), 
+            new HardCodedStringFormatUrlCatalog(
+                new RootedUrlProvider(
+                    new UncheckedUrlProvider(), 
                     root)), 
             new JavaNetUrlRestGetClient());
         for (Method method : Arena.class.getMethods()) {

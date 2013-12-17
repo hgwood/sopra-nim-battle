@@ -2,7 +2,7 @@ package fr.notfound.url;
 
 import java.net.URL;
 
-public interface UrlFactory {
+public interface UrlProvider {
     
     URL get(String path);
 
