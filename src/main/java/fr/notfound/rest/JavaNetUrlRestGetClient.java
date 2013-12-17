@@ -1,4 +1,4 @@
-package fr.notfound;
+package fr.notfound.rest;
 
 import static java.lang.String.format;
 

@@ -1,4 +1,4 @@
-package fr.notfound;
+package fr.notfound.url;
 
 import static java.lang.String.format;
 import java.net.URL;

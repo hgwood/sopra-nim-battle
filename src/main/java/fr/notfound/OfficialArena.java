@@ -1,5 +1,8 @@
 package fr.notfound;
 
+import fr.notfound.rest.RestGetClient;
+import fr.notfound.url.ArenaUrlProvider;
+
 public class OfficialArena implements Arena {
     
     public final ArenaUrlProvider urls;

@@ -1,4 +1,4 @@
-package fr.notfound;
+package fr.notfound.url;
 
 import java.net.MalformedURLException;
 import java.net.URL;

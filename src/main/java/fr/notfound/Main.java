@@ -4,6 +4,9 @@ import static java.util.Arrays.copyOfRange;
 
 import java.lang.reflect.Method;
 
+import fr.notfound.rest.JavaNetUrlRestGetClient;
+import fr.notfound.url.*;
+
 public class Main {
     
     public static final int ArgMethod = 0;
