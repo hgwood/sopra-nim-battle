@@ -1,4 +1,4 @@
-package fr.notfound;
+package fr.notfound.cli;
 
 import static java.util.Arrays.asList;
 
@@ -8,12 +8,14 @@ import java.util.List;
 
 import com.google.common.base.Charsets;
 
-public class ApplicationRunner {
+import fr.notfound.cli.ReflectCliToOfficialArena;
+
+public class ReflectCliToOfficialArenaRunner {
 
     public List<String> run(String... args) {
         try(ByteArrayOutputStream out = new ByteArrayOutputStream()) {
             System.setOut(new PrintStream(out));
-            Main.main(args);
+            ReflectCliToOfficialArena.main(args);
             return asList(out.toString(Charsets.UTF_8.name()).split("\\r\\n"));
         } catch (Exception e) {
             throw new RuntimeException(e);
