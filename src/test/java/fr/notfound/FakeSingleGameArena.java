@@ -1,16 +1,18 @@
 package fr.notfound;
 
-import java.util.UUID;
+import static fr.notfound.TestUtils.localhost;
+import static java.util.UUID.randomUUID;
 
 public class FakeSingleGameArena {
     
-    public final String url = "http://localhost:8084";
+    public final int port = 8084;
+    public final String url = localhost(port);
     
     private Jetty server;
 
     public String start(String teamName, String password) {
-        String id = UUID.randomUUID().toString();
-        server = Jetty.onPort(8084)
+        String id = randomUUID().toString();
+        server = Jetty.onPort(port)
             .handle("/player/getIdEquipe/" + teamName + "/" + password, id)
             .start();
         return id;
