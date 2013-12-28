@@ -34,5 +34,9 @@ public class HttpGame implements Game {
     @Override public MoveResult play(Move move) {
         return MoveResult.parse(client.play(gameId, teamId, move.x, move.y));
     }
+    
+    @Override public String toString() {
+        return "Game " + gameId;
+    }
 
 }

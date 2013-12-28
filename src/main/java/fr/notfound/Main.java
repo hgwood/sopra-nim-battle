@@ -1,19 +1,12 @@
 package fr.notfound;
 
 import static java.lang.Integer.parseInt;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.Properties;
-
-import org.apache.velocity.app.VelocityEngine;
-
-import com.google.common.collect.ImmutableMap;
-
+import fr.notfound.adapters.HttpArena;
+import fr.notfound.domain.Arena;
+import fr.notfound.domain.Team;
 import fr.notfound.rest.ApacheHttpUriContentReader;
-import fr.notfound.rest.UriContentReader;
+import fr.notfound.rest.OfficialArenaClient;
+import fr.notfound.rest.uri.*;
 
 public class Main {
 
@@ -25,34 +18,14 @@ public class Main {
     private static Jetty server;
 
     public static void main(String[] args) {
-        Properties urls = uris();
+        Arena arena = new HttpArena(
+            new OfficialArenaClient(
+                new HardCodedOfficialUriCatalog(
+                    new AbsoluteUriFactory(new UncheckedUriFactory(), args[argArenaUrl] + "/")), 
+                new ApacheHttpUriContentReader()));
+        Team team = arena.join(args[argTeamName], args[argPassword]);
         
-        TemplateRenderer templateRenderer = new TemplateRenderer(new VelocityEngine());
-        String teamIdUrl = templateRenderer.render(urls.getProperty("teamId"), ImmutableMap.of(
-            "teamName", args[argTeamName], 
-            "password", args[argPassword]));
-        
-        UriContentReader client = new ApacheHttpUriContentReader();
-        String teamId = client.read(uri(args[argArenaUrl] + "/" + teamIdUrl));
-        server = Jetty.onPort(parseInt(args[argMonitoringPort])).handle("/", teamId).start();
-    }
-    
-    private static Properties uris() {
-        Properties urls = new Properties();
-        try (InputStream inputStream = Main.class.getClassLoader().getResourceAsStream("urls.properties")) {
-            urls.load(inputStream);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return urls;
-    }
-    
-    private static URI uri(String s) {
-        try {
-            return new URI(s);
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
+        server = Jetty.onPort(parseInt(args[argMonitoringPort])).handle("/", team.toString()).start();
     }
 
     public static void stop() {

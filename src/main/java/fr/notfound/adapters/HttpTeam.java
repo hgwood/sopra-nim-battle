@@ -30,5 +30,9 @@ public class HttpTeam implements Team {
         if (gameId.equals(NoGame)) throw new ArenaException("no versus running for this team");
         return new HttpGame(client, gameId, id);
     }
+    
+    @Override public String toString() {
+        return "Team " + id;
+    }
 
 }
