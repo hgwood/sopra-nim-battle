@@ -1,4 +1,4 @@
-package fr.notfound.url;
+package fr.notfound.rest.uri;
 
 import java.net.URI;
 

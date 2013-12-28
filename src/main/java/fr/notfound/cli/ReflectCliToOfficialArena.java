@@ -5,7 +5,7 @@ import static java.util.Arrays.copyOfRange;
 import java.lang.reflect.Method;
 
 import fr.notfound.rest.*;
-import fr.notfound.url.*;
+import fr.notfound.rest.uri.*;
 
 /**
  * Command-line interface that prints the result of calling methods of the
@@ -28,8 +28,8 @@ public class ReflectCliToOfficialArena {
     public static void main(String[] args) throws Exception {
         PlainTextArenaClient arena = new OfficialArenaClient(
             new HardCodedStringFormatUriCatalog(
-                new RootedUrlProvider(
-                    new UncheckedUriProvider(), 
+                new RootedUriFactory(
+                    new UncheckedUriFactory(), 
                     root)), 
             new JdkHttpUriContentReader());
         for (Method method : PlainTextArenaClient.class.getMethods()) {

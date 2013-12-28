@@ -1,13 +1,13 @@
-package fr.notfound.url;
+package fr.notfound.rest.uri;
 
 import static java.lang.String.format;
 import java.net.URI;
 
 public class HardCodedStringFormatUriCatalog implements ArenaUriCatalog {
     
-    public final UriProvider factory;
+    public final UriFactory factory;
 
-    public HardCodedStringFormatUriCatalog(UriProvider factory) {
+    public HardCodedStringFormatUriCatalog(UriFactory factory) {
         this.factory = factory;
     }
 

@@ -1,13 +1,13 @@
-package fr.notfound.url;
+package fr.notfound.rest.uri;
 
 import java.net.URI;
 
-public class RootedUrlProvider implements UriProvider {
+public class RootedUriFactory implements UriFactory {
     
-    public final UriProvider delegate;
+    public final UriFactory delegate;
     public final String root;
 
-    public RootedUrlProvider(UriProvider delegate, String root) {
+    public RootedUriFactory(UriFactory delegate, String root) {
         this.delegate = delegate;
         this.root = root;
     }

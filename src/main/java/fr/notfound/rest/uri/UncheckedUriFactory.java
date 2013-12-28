@@ -1,9 +1,9 @@
-package fr.notfound.url;
+package fr.notfound.rest.uri;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 
-public class UncheckedUriProvider implements UriProvider {
+public class UncheckedUriFactory implements UriFactory {
 
     @Override public URI get(String path) {
         try {
