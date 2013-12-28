@@ -8,8 +8,8 @@ import static org.mockito.Mockito.when;
 
 import org.junit.Test;
 
-import fr.notfound.PlainTextArenaClient;
 import fr.notfound.domain.Team;
+import fr.notfound.rest.PlainTextArenaClient;
 
 /**
  * Not sure this test is useful...

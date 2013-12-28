@@ -1,14 +1,13 @@
-package fr.notfound;
+package fr.notfound.rest;
 
-import fr.notfound.rest.UriContentReader;
 import fr.notfound.url.ArenaUriCatalog;
 
-public class OfficialArena implements PlainTextArenaClient {
+public class OfficialArenaClient implements PlainTextArenaClient {
     
     public final ArenaUriCatalog urls;
     public final UriContentReader client;
     
-    public OfficialArena(ArenaUriCatalog urls, UriContentReader client) {
+    public OfficialArenaClient(ArenaUriCatalog urls, UriContentReader client) {
         this.urls = urls;
         this.client = client;
     }

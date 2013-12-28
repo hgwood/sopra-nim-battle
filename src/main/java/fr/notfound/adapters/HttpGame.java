@@ -1,7 +1,7 @@
 package fr.notfound.adapters;
 
-import fr.notfound.PlainTextArenaClient;
 import fr.notfound.domain.*;
+import fr.notfound.rest.PlainTextArenaClient;
 
 public class HttpGame implements Game {
     

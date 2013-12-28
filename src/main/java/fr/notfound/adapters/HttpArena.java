@@ -1,8 +1,8 @@
 package fr.notfound.adapters;
 
-import fr.notfound.PlainTextArenaClient;
 import fr.notfound.domain.Arena;
 import fr.notfound.domain.Team;
+import fr.notfound.rest.PlainTextArenaClient;
 
 public class HttpArena implements Arena {
     

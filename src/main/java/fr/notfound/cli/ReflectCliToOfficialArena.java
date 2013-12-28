@@ -4,9 +4,7 @@ import static java.util.Arrays.copyOfRange;
 
 import java.lang.reflect.Method;
 
-import fr.notfound.PlainTextArenaClient;
-import fr.notfound.OfficialArena;
-import fr.notfound.rest.JdkHttpUriContentReader;
+import fr.notfound.rest.*;
 import fr.notfound.url.*;
 
 /**
@@ -28,7 +26,7 @@ public class ReflectCliToOfficialArena {
     public static final int ArgMethod = 0;
     
     public static void main(String[] args) throws Exception {
-        PlainTextArenaClient arena = new OfficialArena(
+        PlainTextArenaClient arena = new OfficialArenaClient(
             new HardCodedStringFormatUriCatalog(
                 new RootedUrlProvider(
                     new UncheckedUriProvider(), 
