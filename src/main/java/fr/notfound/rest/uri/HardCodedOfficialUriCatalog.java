@@ -3,11 +3,11 @@ package fr.notfound.rest.uri;
 import static java.lang.String.format;
 import java.net.URI;
 
-public class HardCodedStringFormatUriCatalog implements ArenaUriCatalog {
+public class HardCodedOfficialUriCatalog implements ArenaUriCatalog {
     
     public final UriFactory factory;
 
-    public HardCodedStringFormatUriCatalog(UriFactory factory) {
+    public HardCodedOfficialUriCatalog(UriFactory factory) {
         this.factory = factory;
     }
 
