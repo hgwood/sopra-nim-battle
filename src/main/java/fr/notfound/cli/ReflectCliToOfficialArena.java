@@ -28,7 +28,7 @@ public class ReflectCliToOfficialArena {
     public static void main(String[] args) throws Exception {
         PlainTextArenaClient arena = new OfficialArenaClient(
             new HardCodedOfficialUriCatalog(
-                new RootedUriFactory(
+                new AbsoluteUriFactory(
                     new UncheckedUriFactory(), 
                     root)), 
             new JdkHttpUriContentReader());
