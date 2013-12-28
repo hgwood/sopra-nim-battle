@@ -14,7 +14,7 @@ public class TestUtils {
     }
 
     public static String contentOf(URI url) {
-        return new UriContentReader().read(url);
+        return new HttpUriContentReader().read(url);
     }
 
 }

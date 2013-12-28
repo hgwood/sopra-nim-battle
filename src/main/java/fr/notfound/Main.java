@@ -29,7 +29,7 @@ public class Main {
             "teamName", args[argTeamName], 
             "password", args[argPassword]));
         
-        UriContentReader client = new UriContentReader();
+        UriContentReader client = new HttpUriContentReader();
         String teamId = client.read(uri(args[argArenaUrl] + "/" + teamIdUrl));
         server = Jetty.onPort(parseInt(args[argMonitoringPort])).handle("/", teamId).start();
     }
