@@ -12,6 +12,9 @@ import org.apache.velocity.app.VelocityEngine;
 
 import com.google.common.collect.ImmutableMap;
 
+import fr.notfound.rest.ApacheHttpUriContentReader;
+import fr.notfound.rest.UriContentReader;
+
 public class Main {
 
     private static final int argArenaUrl = 0;
@@ -29,7 +32,7 @@ public class Main {
             "teamName", args[argTeamName], 
             "password", args[argPassword]));
         
-        UriContentReader client = new HttpUriContentReader();
+        UriContentReader client = new ApacheHttpUriContentReader();
         String teamId = client.read(uri(args[argArenaUrl] + "/" + teamIdUrl));
         server = Jetty.onPort(parseInt(args[argMonitoringPort])).handle("/", teamId).start();
     }

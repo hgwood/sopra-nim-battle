@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
 
 import fr.notfound.PlainTextArenaClient;
 import fr.notfound.OfficialArena;
-import fr.notfound.rest.JavaNetUrlRestGetClient;
+import fr.notfound.rest.JdkHttpUriContentReader;
 import fr.notfound.url.*;
 
 /**
@@ -33,7 +33,7 @@ public class ReflectCliToOfficialArena {
                 new RootedUrlProvider(
                     new UncheckedUriProvider(), 
                     root)), 
-            new JavaNetUrlRestGetClient());
+            new JdkHttpUriContentReader());
         for (Method method : PlainTextArenaClient.class.getMethods()) {
             if (method.getName().equals(args[ArgMethod])) {
                 String response = (String)method.invoke(arena, (Object[])copyOfRange(args, 1, args.length));

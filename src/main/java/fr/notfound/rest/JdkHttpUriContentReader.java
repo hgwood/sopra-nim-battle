@@ -10,9 +10,9 @@ import java.net.URI;
 import com.google.common.base.Charsets;
 import com.google.common.io.CharStreams;
 
-public class JavaNetUrlRestGetClient implements RestGetClient {
+public class JdkHttpUriContentReader implements UriContentReader {
 
-    @Override public String get(URI uri) {
+    @Override public String read(URI uri) {
         try {
             HttpURLConnection connection = (HttpURLConnection)uri.toURL().openConnection();
             connection.setRequestMethod("GET");

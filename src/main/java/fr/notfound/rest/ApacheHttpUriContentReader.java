@@ -1,4 +1,4 @@
-package fr.notfound;
+package fr.notfound.rest;
 
 import static java.lang.String.format;
 import static java.net.HttpURLConnection.HTTP_OK;
@@ -14,7 +14,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
-public class HttpUriContentReader implements UriContentReader {
+public class ApacheHttpUriContentReader implements UriContentReader {
     
     @Override public String read(final URI uri) {
         try (CloseableHttpClient client = HttpClients.createDefault()) {
