@@ -3,7 +3,7 @@ package fr.notfound;
 import fr.notfound.rest.RestGetClient;
 import fr.notfound.url.ArenaUrlCatalog;
 
-public class OfficialArena implements Arena {
+public class OfficialArena implements PlainTextArenaClient {
     
     public final ArenaUrlCatalog urls;
     public final RestGetClient client;

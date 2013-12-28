@@ -4,20 +4,20 @@ import static java.util.Arrays.copyOfRange;
 
 import java.lang.reflect.Method;
 
-import fr.notfound.Arena;
+import fr.notfound.PlainTextArenaClient;
 import fr.notfound.OfficialArena;
 import fr.notfound.rest.JavaNetUrlRestGetClient;
 import fr.notfound.url.*;
 
 /**
  * Command-line interface that prints the result of calling methods of the
- * {@link Arena} interface on the official battle arena. This interface was
+ * {@link PlainTextArenaClient} interface on the official battle arena. This interface was
  * designed to be used by humans to quickly query and test the official arena
  * without having to write long and complicated URLs.
  * <p>
  * Usage: method-name [arg0 [arg1 [arg2...
  * <p>
- * method-name: name of a method of the {@link Arena} interface<br/>
+ * method-name: name of a method of the {@link PlainTextArenaClient} interface<br/>
  * argX: arguments to pass to the method
  * <p>
  * Example: status theGame theTeam
@@ -28,13 +28,13 @@ public class ReflectCliToOfficialArena {
     public static final int ArgMethod = 0;
     
     public static void main(String[] args) throws Exception {
-        Arena arena = new OfficialArena(
+        PlainTextArenaClient arena = new OfficialArena(
             new HardCodedStringFormatUrlCatalog(
                 new RootedUrlProvider(
                     new UncheckedUrlProvider(), 
                     root)), 
             new JavaNetUrlRestGetClient());
-        for (Method method : Arena.class.getMethods()) {
+        for (Method method : PlainTextArenaClient.class.getMethods()) {
             if (method.getName().equals(args[ArgMethod])) {
                 String response = (String)method.invoke(arena, (Object[])copyOfRange(args, 1, args.length));
                 System.out.println(response);

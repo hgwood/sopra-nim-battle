@@ -7,7 +7,7 @@ import static fr.notfound.Matchers.*;
 import org.junit.Test;
 
 /**
- * Call every {@link Arena} method on the official arena through the
+ * Call every {@link PlainTextArenaClient} method on the official arena through the
  * {@link ReflectCliToOfficialArena} and check the content of the response is of
  * the expected form.
  */

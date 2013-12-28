@@ -8,7 +8,7 @@ import org.junit.Test;
  * These tests startup a HTTP server to impersonate an arena, then launch the
  * application, feeding it the parameters to connect to the fake arena. They
  * will then hit the application's monitoring server and check that the desired
- * content are there.
+ * content is there.
  */
 public class MonitoringEndToEndTest {
     

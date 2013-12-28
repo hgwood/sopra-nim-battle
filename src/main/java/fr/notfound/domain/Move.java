@@ -13,4 +13,9 @@ public class Move {
         this.y = y;
     }
 
+    public static Move parse(String coordinates) {
+        String[] coordinatesArray = coordinates.split(",");
+        return new Move(coordinatesArray[0], coordinatesArray[1]);
+    }
+
 }
