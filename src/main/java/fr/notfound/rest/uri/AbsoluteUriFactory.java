@@ -12,8 +12,8 @@ public class AbsoluteUriFactory implements UriFactory {
         this.root = root;
     }
 
-    @Override public URI get(String relativePath) {
-        return delegate.get(root + relativePath);
+    @Override public URI get(String relativeUri) {
+        return delegate.get(root + relativeUri);
     }
 
 }
