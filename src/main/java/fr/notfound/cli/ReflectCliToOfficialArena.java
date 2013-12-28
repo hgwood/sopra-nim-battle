@@ -29,9 +29,9 @@ public class ReflectCliToOfficialArena {
     
     public static void main(String[] args) throws Exception {
         PlainTextArenaClient arena = new OfficialArena(
-            new HardCodedStringFormatUrlCatalog(
+            new HardCodedStringFormatUriCatalog(
                 new RootedUrlProvider(
-                    new UncheckedUrlProvider(), 
+                    new UncheckedUriProvider(), 
                     root)), 
             new JavaNetUrlRestGetClient());
         for (Method method : PlainTextArenaClient.class.getMethods()) {

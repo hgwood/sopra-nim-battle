@@ -1,9 +1,9 @@
 package fr.notfound.rest;
 
-import java.net.URL;
+import java.net.URI;
 
 public interface RestGetClient {
     
-    String get(URL url);
+    String get(URI url);
 
 }

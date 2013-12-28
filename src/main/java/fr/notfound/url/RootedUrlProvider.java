@@ -1,18 +1,18 @@
 package fr.notfound.url;
 
-import java.net.URL;
+import java.net.URI;
 
-public class RootedUrlProvider implements UrlProvider {
+public class RootedUrlProvider implements UriProvider {
     
-    public final UrlProvider delegate;
+    public final UriProvider delegate;
     public final String root;
 
-    public RootedUrlProvider(UrlProvider delegate, String root) {
+    public RootedUrlProvider(UriProvider delegate, String root) {
         this.delegate = delegate;
         this.root = root;
     }
 
-    @Override public URL get(String path) {
+    @Override public URI get(String path) {
         return delegate.get(root + path);
     }
 
