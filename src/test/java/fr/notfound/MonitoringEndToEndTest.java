@@ -19,7 +19,7 @@ public class MonitoringEndToEndTest {
     
     @Test public void showTeamId() {
         String teamId = arena.start(teamName, password);
-        application.join(arena.url, teamName, password);
+        application.join(arena.uri, teamName, password);
         application.showsTeamId(teamId);
         application.stop();
         arena.stop();

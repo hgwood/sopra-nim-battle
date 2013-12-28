@@ -3,10 +3,12 @@ package fr.notfound;
 import static fr.notfound.TestUtils.localhost;
 import static java.util.UUID.randomUUID;
 
+import java.net.URI;
+
 public class FakeSingleGameArena {
     
     public final int port = 8084;
-    public final String url = localhost(port);
+    public final URI uri = localhost(port);
     
     private Jetty server;
 
