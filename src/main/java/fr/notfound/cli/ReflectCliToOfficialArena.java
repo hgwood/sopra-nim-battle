@@ -22,7 +22,7 @@ import fr.notfound.rest.uri.*;
  */
 public class ReflectCliToOfficialArena {
     
-    public static final String root = "http://ec2-54-200-12-98.us-west-2.compute.amazonaws.com/csnbattlearena/webservices/test/";
+    public static final String Root = "http://ec2-54-200-12-98.us-west-2.compute.amazonaws.com/csnbattlearena/webservices/test/";
     public static final int ArgMethod = 0;
     
     public static void main(String[] args) throws Exception {
@@ -30,7 +30,7 @@ public class ReflectCliToOfficialArena {
             new HardCodedOfficialUriCatalog(
                 new AbsoluteUriFactory(
                     new UncheckedUriFactory(), 
-                    root)), 
+                    Root)), 
             new JdkHttpUriContentReader());
         for (Method method : PlainTextArenaClient.class.getMethods()) {
             if (method.getName().equals(args[ArgMethod])) {
