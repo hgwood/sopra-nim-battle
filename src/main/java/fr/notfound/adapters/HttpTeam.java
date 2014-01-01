@@ -16,7 +16,7 @@ public class HttpTeam implements Team {
     }
 
     @Override public Game newPractice(AiLevel level) {
-        return new HttpGame(client, client.newPractice(level.toString(), id), id);
+        return new HttpGame(client, client.newPractice(level.value, id), id);
     }
 
     @Override public Game currentPractice() {
