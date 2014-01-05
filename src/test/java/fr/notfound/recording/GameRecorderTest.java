@@ -18,11 +18,13 @@ public class GameRecorderTest {
     
     private static final String x = "x";
     private static final String y = "y";
-    private static final GameStatus status = GameStatus.Won;
-    private static final Board board = new Board();
     private static final Move previousMove = new Move(x ,y);
-    private static final Move thisMove = new Move(x, y);
+    private static final Move move = new Move(x, y);
+    private static final GameStatus statusBefore = GameStatus.Won;
+    private static final Board boardBefore = new Board();
     private static final MoveResult moveResult = MoveResult.Approved;
+    private static final RecordedMove expectedRecordedMove = 
+        new RecordedMove(statusBefore, boardBefore, previousMove, move, moveResult);
     
     private final Game game = mock(Game.class);
     private final GameRecorder sut = new GameRecorder(game);
@@ -32,7 +34,7 @@ public class GameRecorderTest {
     }
     
     @Test public void gameDataIsGatheredBeforePlaying() {
-        sut.play(thisMove);
+        sut.play(move);
         InOrder inOrder = Mockito.inOrder(game);
         inOrder.verify(game).status();
         inOrder.verify(game).board();
@@ -42,19 +44,15 @@ public class GameRecorderTest {
     }
     
     @Test public void recordsAllGameData() {
-        when(game.status()).thenReturn(status);
-        when(game.board()).thenReturn(board);
+        when(game.status()).thenReturn(statusBefore);
+        when(game.board()).thenReturn(boardBefore);
         when(game.latestMove()).thenReturn(previousMove);
-        when(game.play(thisMove)).thenReturn(moveResult);
+        when(game.play(move)).thenReturn(moveResult);
         
-        sut.play(thisMove);
+        sut.play(move);
         List<RecordedMove> result = sut.getRecordedMoves();
         assertThat(result, hasSize(equalTo(1)));
-        assertThat(result.get(0).statusBefore, is(status));
-        assertThat(result.get(0).boardBefore, is(board));
-        assertThat(result.get(0).previousMove, is(previousMove));
-        assertThat(result.get(0).playedMove, is(thisMove));
-        assertThat(result.get(0).result, is(moveResult));
+        assertThat(result.get(0), is(equalTo(expectedRecordedMove)));
     }
 
 }
