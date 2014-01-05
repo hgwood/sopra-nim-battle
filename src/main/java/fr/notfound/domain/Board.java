@@ -1,13 +1,12 @@
 package fr.notfound.domain;
 
-import fr.notfound.meta.ValueObject;
+import fr.notfound.meta.ValueType;
 
-@ValueObject
+@ValueType
 public class Board {
 
     public static Board parse(String board) {
-        // TODO Auto-generated method stub
-        return null;
+        throw new UnsupportedOperationException("TODO: implement on battle-day");
     }
 
 }

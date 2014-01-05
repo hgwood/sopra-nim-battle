@@ -1,8 +1,8 @@
 package fr.notfound.domain;
 
-import fr.notfound.meta.ValueObject;
+import fr.notfound.meta.ValueType;
 
-@ValueObject
+@ValueType
 public class Move {
     
     public final String x;

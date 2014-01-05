@@ -11,6 +11,6 @@ import java.lang.annotation.Target;
  * are identified by their value (rather than their identity).
  */
 @Target(TYPE)
-public @interface ValueObject {
+public @interface ValueType {
 
 }
