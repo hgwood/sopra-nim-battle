@@ -2,7 +2,7 @@ package fr.notfound;
 
 import org.slf4j.LoggerFactory;
 
-import fr.notfound.adapters.HttpArena;
+import fr.notfound.adapters.ArenaOverArenaClient;
 import fr.notfound.domain.Arena;
 import fr.notfound.rest.*;
 import fr.notfound.rest.uri.*;
@@ -13,7 +13,7 @@ import fr.notfound.rest.uri.*;
 public class CompositionRoot {
     
     public Arena arena(String uri) {
-        return new HttpArena(arenaClient(uri));
+        return new ArenaOverArenaClient(arenaClient(uri));
     }
     
     public PlainTextArenaClient arenaClient(String uri) {

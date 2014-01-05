@@ -3,7 +3,7 @@ package fr.notfound.adapters;
 import fr.notfound.domain.*;
 import fr.notfound.rest.PlainTextArenaClient;
 
-public class HttpGame implements Game {
+public class GameOverArenaClient implements Game {
     
     private static final String NoBoard = "NA";
     
@@ -11,7 +11,7 @@ public class HttpGame implements Game {
     private final String gameId;
     private final String teamId;
 
-    public HttpGame(PlainTextArenaClient client, String gameId, String teamId) {
+    public GameOverArenaClient(PlainTextArenaClient client, String gameId, String teamId) {
         this.client = client;
         this.gameId = gameId;
         this.teamId = teamId;

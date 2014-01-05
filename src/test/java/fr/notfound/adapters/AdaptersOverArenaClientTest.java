@@ -11,7 +11,7 @@ import fr.notfound.domain.AiLevel;
 import fr.notfound.domain.GameStatus;
 import fr.notfound.rest.PlainTextArenaClient;
 
-public class HttpAdaptersTest {
+public class AdaptersOverArenaClientTest {
     
     public static final String teamName = "teamName";
     public static final String password = "password";
@@ -20,7 +20,7 @@ public class HttpAdaptersTest {
     public static final String aiLevel = "easy";
     
     public final PlainTextArenaClient client = mock(PlainTextArenaClient.class);
-    public final HttpArena sut = new HttpArena(client);
+    public final ArenaOverArenaClient sut = new ArenaOverArenaClient(client);
     
     @Test public void communicatesThroughTheSameClientAllTheWay() {
         when(client.teamId(teamName, password)).thenReturn(teamId);
