@@ -4,8 +4,8 @@ import static java.util.Arrays.copyOfRange;
 
 import java.lang.reflect.Method;
 
-import fr.notfound.rest.*;
-import fr.notfound.rest.uri.*;
+import fr.notfound.CompositionRoot;
+import fr.notfound.rest.PlainTextArenaClient;
 
 /**
  * Command-line interface that prints the result of calling methods of the
@@ -26,12 +26,7 @@ public class ReflectCliToOfficialArena {
     public static final int ArgMethod = 0;
     
     public static void main(String[] args) throws Exception {
-        PlainTextArenaClient arena = new OfficialArenaClient(
-            new HardCodedOfficialUriCatalog(
-                new AbsoluteUriFactory(
-                    new UncheckedUriFactory(), 
-                    Root)), 
-            new JdkHttpUriContentReader());
+        PlainTextArenaClient arena = new CompositionRoot().arenaClient(Root);
         for (Method method : PlainTextArenaClient.class.getMethods()) {
             if (method.getName().equals(args[ArgMethod])) {
                 String response = (String)method.invoke(arena, (Object[])copyOfRange(args, 1, args.length));

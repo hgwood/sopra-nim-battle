@@ -1,14 +1,8 @@
 package fr.notfound;
 
 import static java.lang.Integer.parseInt;
-
-import org.slf4j.LoggerFactory;
-
-import fr.notfound.adapters.HttpArena;
 import fr.notfound.domain.Arena;
 import fr.notfound.domain.Team;
-import fr.notfound.rest.*;
-import fr.notfound.rest.uri.*;
 
 public class Main {
 
@@ -20,14 +14,7 @@ public class Main {
     private static Jetty server;
 
     public static void main(String[] args) {
-        Arena arena = new HttpArena(
-            new LoggingArenaClient(
-                new OfficialArenaClient(
-                    new HardCodedOfficialUriCatalog(
-                        new AbsoluteUriFactory(new UncheckedUriFactory(), args[argArenaUrl] + "/")), 
-                    new ApacheHttpUriContentReader()), 
-                LoggerFactory.getLogger(LoggingArenaClient.class)));
-        
+        Arena arena = new CompositionRoot().arena(args[argArenaUrl]);
         Team team = arena.join(args[argTeamName], args[argPassword]);
         server = Jetty.onPort(parseInt(args[argMonitoringPort])).handle("/", team.toString()).start();
     }
