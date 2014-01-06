@@ -4,3 +4,4 @@
 .project
 /.idea
 battle-csn-2014.iml
+*.log

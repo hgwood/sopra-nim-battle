@@ -4,12 +4,16 @@
     <Console name="Console" target="SYSTEM_OUT">
       <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
     </Console>
+    <File name="File" fileName="log.log">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+    </File>
   </Appenders>
   <Loggers>
     <Root level="warn">
       <AppenderRef ref="Console" />
     </Root>
     <Logger name="fr.notfound" level="info">
+      <AppenderRef ref="File" />
     </Logger>
   </Loggers>
 </Configuration>
