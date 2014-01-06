@@ -22,7 +22,7 @@ public class GameOverArenaClient implements Game {
     }
 
     @Override public Board board() {
-        String board = client.status(gameId, teamId);
+        String board = client.board(gameId);
         if (board.equals(NoBoard)) throw new ArenaException("no board available");
         return Board.parse(board);
     }
