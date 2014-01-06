@@ -10,13 +10,13 @@ import fr.notfound.domain.*;
 public class GameRecorder implements Game {
     
     private final Game gameBeingRecorded;
-    private final List<RecordedMove> recordedMoves = newArrayList();
+    private final List<Decision> recordedMoves = newArrayList();
 
-    public GameRecorder(Game recorded) {
-        this.gameBeingRecorded = recorded;
+    public GameRecorder(Game gameBeingRecorded) {
+        this.gameBeingRecorded = gameBeingRecorded;
     }
     
-    public List<RecordedMove> getRecordedMoves() {
+    public List<Decision> getRecordedMoves() {
         return Collections.unmodifiableList(recordedMoves);
     }
 
@@ -37,8 +37,12 @@ public class GameRecorder implements Game {
         Board boardBefore = gameBeingRecorded.board();
         Move previousMove = gameBeingRecorded.latestMove();
         MoveResult result = gameBeingRecorded.play(move);
-        recordedMoves.add(new RecordedMove(statusBefore, boardBefore, previousMove, move, result));
+        recordedMoves.add(new Decision(statusBefore, boardBefore, previousMove, move, result));
         return result;
+    }
+    
+    @Override public String toString() {
+        return "Recorder of " + gameBeingRecorded.toString();
     }
 
 }

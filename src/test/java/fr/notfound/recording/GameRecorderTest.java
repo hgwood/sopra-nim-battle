@@ -21,10 +21,10 @@ public class GameRecorderTest {
     private static final Move previousMove = new Move(x ,y);
     private static final Move move = new Move(x, y);
     private static final GameStatus statusBefore = GameStatus.Won;
-    private static final Board boardBefore = new Board();
+    private static final Board boardBefore = new Board("");
     private static final MoveResult moveResult = MoveResult.Approved;
-    private static final RecordedMove expectedRecordedMove = 
-        new RecordedMove(statusBefore, boardBefore, previousMove, move, moveResult);
+    private static final Decision expectedRecordedMove = 
+        new Decision(statusBefore, boardBefore, previousMove, move, moveResult);
     
     private final Game game = mock(Game.class);
     private final GameRecorder sut = new GameRecorder(game);
@@ -50,7 +50,7 @@ public class GameRecorderTest {
         when(game.play(move)).thenReturn(moveResult);
         
         sut.play(move);
-        List<RecordedMove> result = sut.getRecordedMoves();
+        List<Decision> result = sut.getRecordedMoves();
         assertThat(result, hasSize(equalTo(1)));
         assertThat(result.get(0), is(equalTo(expectedRecordedMove)));
     }
