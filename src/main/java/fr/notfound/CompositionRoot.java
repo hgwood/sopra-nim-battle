@@ -17,13 +17,15 @@ public class CompositionRoot {
     }
     
     public PlainTextArenaClient arenaClient(String uri) {
-        String uriWithEndingSlash = uri.endsWith("/") ? uri : uri + "/";
         return new LoggingArenaClient(
-            new OfficialArenaClient(
-                new HardCodedOfficialUriCatalog(
-                    new AbsoluteUriFactory(new UncheckedUriFactory(), uriWithEndingSlash)), 
-                new ApacheHttpUriContentReader()), 
+            new OfficialArenaClient(uris(uri), new ApacheHttpUriContentReader()), 
             LoggerFactory.getLogger(LoggingArenaClient.class));
+    }
+    
+    public ArenaUriCatalog uris(String rootUri) {
+        String rootUriWithEndingSlash = rootUri.endsWith("/") ? rootUri : rootUri + "/";
+        return new HardCodedOfficialUriCatalog(
+            new AbsoluteUriFactory(new UncheckedUriFactory(), rootUriWithEndingSlash));
     }
 
 }
