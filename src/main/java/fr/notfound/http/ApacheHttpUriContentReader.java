@@ -1,4 +1,4 @@
-package fr.notfound.rest;
+package fr.notfound.http;
 
 import static java.lang.String.format;
 import static java.net.HttpURLConnection.HTTP_OK;

@@ -1,7 +1,7 @@
 package fr.notfound.adapters;
 
 import fr.notfound.domain.*;
-import fr.notfound.rest.PlainTextArenaClient;
+import fr.notfound.http.PlainTextArenaClient;
 
 public class TeamOverArenaClient implements Team {
     

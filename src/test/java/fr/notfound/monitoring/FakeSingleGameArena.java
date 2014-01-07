@@ -1,10 +1,12 @@
-package fr.notfound;
+package fr.notfound.monitoring;
 
-import static fr.notfound.TestUtils.localhost;
+import static fr.notfound.monitoring.TestUtils.localhost;
 
 import java.net.URI;
 
-import fr.notfound.rest.uri.*;
+import fr.notfound.CompositionRoot;
+import fr.notfound.http.server.Jetty;
+import fr.notfound.http.uri.*;
 
 public class FakeSingleGameArena {
     

@@ -1,8 +1,8 @@
-package fr.notfound;
+package fr.notfound.monitoring;
 
 import java.net.URI;
 
-import fr.notfound.rest.ApacheHttpUriContentReader;
+import fr.notfound.http.ApacheHttpUriContentReader;
 
 public class TestUtils {
 

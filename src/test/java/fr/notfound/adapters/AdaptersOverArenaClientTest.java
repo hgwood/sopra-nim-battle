@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import fr.notfound.domain.AiLevel;
 import fr.notfound.domain.GameStatus;
-import fr.notfound.rest.PlainTextArenaClient;
+import fr.notfound.http.PlainTextArenaClient;
 
 public class AdaptersOverArenaClientTest {
     

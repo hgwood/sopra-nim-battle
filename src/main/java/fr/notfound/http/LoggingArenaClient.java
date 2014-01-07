@@ -1,4 +1,4 @@
-package fr.notfound.rest;
+package fr.notfound.http;
 
 import org.slf4j.Logger;
 

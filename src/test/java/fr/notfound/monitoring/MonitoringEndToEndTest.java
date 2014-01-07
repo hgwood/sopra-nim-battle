@@ -1,4 +1,4 @@
-package fr.notfound;
+package fr.notfound.monitoring;
 
 import org.junit.Test;
 

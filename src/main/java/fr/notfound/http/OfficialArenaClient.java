@@ -1,6 +1,6 @@
-package fr.notfound.rest;
+package fr.notfound.http;
 
-import fr.notfound.rest.uri.ArenaUriCatalog;
+import fr.notfound.http.uri.ArenaUriCatalog;
 
 public class OfficialArenaClient implements PlainTextArenaClient {
     

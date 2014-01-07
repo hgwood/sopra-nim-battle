@@ -1,4 +1,4 @@
-package fr.notfound;
+package fr.notfound.http.server;
 
 import java.io.IOException;
 import java.io.Writer;

@@ -4,8 +4,8 @@ import org.slf4j.LoggerFactory;
 
 import fr.notfound.adapters.ArenaOverArenaClient;
 import fr.notfound.domain.Arena;
-import fr.notfound.rest.*;
-import fr.notfound.rest.uri.*;
+import fr.notfound.http.*;
+import fr.notfound.http.uri.*;
 
 /**
  * @see <a href="http://blog.ploeh.dk/2011/07/28/CompositionRoot/">The Definition of Composition Root</a>

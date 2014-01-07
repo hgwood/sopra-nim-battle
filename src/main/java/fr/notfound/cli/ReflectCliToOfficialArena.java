@@ -5,7 +5,7 @@ import static java.util.Arrays.copyOfRange;
 import java.lang.reflect.Method;
 
 import fr.notfound.CompositionRoot;
-import fr.notfound.rest.PlainTextArenaClient;
+import fr.notfound.http.PlainTextArenaClient;
 
 /**
  * Command-line interface that prints the result of calling methods of the

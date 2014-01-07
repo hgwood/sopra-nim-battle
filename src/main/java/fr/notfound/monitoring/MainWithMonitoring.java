@@ -1,14 +1,17 @@
-package fr.notfound;
+package fr.notfound.monitoring;
 
 import static java.lang.Integer.parseInt;
 
-import java.io.*;
+import java.io.PrintWriter;
+import java.io.Writer;
 
+import fr.notfound.CompositionRoot;
 import fr.notfound.domain.*;
-import fr.notfound.recording.GameRecorder;
+import fr.notfound.http.server.Jetty;
 import fr.notfound.recording.Decision;
+import fr.notfound.recording.GameRecorder;
 
-public class Main {
+public class MainWithMonitoring {
 
     private static final int argArenaUrl = 0;
     private static final int argTeamName = 1;
@@ -21,8 +24,6 @@ public class Main {
         Arena arena = new CompositionRoot().arena(args[argArenaUrl]);
         final Team team = arena.join(args[argTeamName], args[argPassword]);
         final GameRecorder game = new GameRecorder(team.currentVersus());
-        //game.play(new Move("0", "0"));
-        //game.play(new Move("42", "42"));
         
         server = Jetty.onPort(parseInt(args[argMonitoringPort]))
             .handle("/", new Jetty.WriterHandler() {
