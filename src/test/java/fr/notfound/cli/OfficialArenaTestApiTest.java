@@ -2,14 +2,14 @@ package fr.notfound.cli;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
-import static fr.notfound.Matchers.*;
+import static fr.notfound.cli.Matchers.*;
 
 import org.junit.Test;
 
 /**
  * Call every {@link PlainTextArenaClient} method on the official arena through the
  * {@link ReflectCliToOfficialArena} and check the content of the response is of
- * the expected form.
+ * the expected form. <strong>Requires the official arena to be reachable!</strong>
  */
 public class OfficialArenaTestApiTest {
 
