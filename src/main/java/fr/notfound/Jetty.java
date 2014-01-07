@@ -2,16 +2,20 @@ package fr.notfound;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.net.URI;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.eclipse.jetty.server.Request;
-import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.*;
 import org.eclipse.jetty.server.handler.*;
 
 public class Jetty {
+    
+    public static interface WriterHandler {
+        void handle(Writer responseWriter);
+    }
 
     public static Jetty onPort(int port) {
         return new Jetty(new Server(port), new ContextHandlerCollection());
@@ -28,8 +32,9 @@ public class Jetty {
     public Jetty handle(String path, final String responseContent) {
         ContextHandler newHandler = new ContextHandler(path);
         newHandler.setHandler(new AbstractHandler() {
-            @Override public void handle(String target, Request baseRequest, HttpServletRequest request,
-                HttpServletResponse response) throws IOException, ServletException {
+            @Override public void handle(
+                String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) 
+                throws IOException, ServletException {
                 try (Writer writer = response.getWriter()) {
                     writer.write(responseContent);
                     writer.flush();
@@ -39,7 +44,40 @@ public class Jetty {
         handlers.addHandler(newHandler);
         return this;
     }
+
+    public Jetty handle(URI path, final String responseContent) {
+        return handle(path.toString(), responseContent);
+    }
+
+    public Jetty handle(String path, final Runnable sideEffect) {
+        ContextHandler newHandler = new ContextHandler(path);
+        newHandler.setHandler(new AbstractHandler() {
+            @Override public void handle(
+                String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) 
+                throws IOException, ServletException {
+                sideEffect.run();
+            }
+        });
+        handlers.addHandler(newHandler);
+        return this;
+    }
     
+    public Jetty handle(String path, final WriterHandler writerHandler) {
+        ContextHandler newHandler = new ContextHandler(path);
+        newHandler.setHandler(new AbstractHandler() {
+            @Override public void handle(
+                String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) 
+                throws IOException, ServletException {
+                try (Writer responseWriter = response.getWriter()) {
+                    writerHandler.handle(responseWriter);
+                    responseWriter.flush();
+                }
+            }
+        });
+        handlers.addHandler(newHandler);
+        return this;
+    }
+
     public Jetty start() {
         built.setHandler(handlers);
         try {
@@ -49,7 +87,7 @@ public class Jetty {
         }
         return this;
     }
-    
+
     public Jetty stop() {
         try {
             built.stop();

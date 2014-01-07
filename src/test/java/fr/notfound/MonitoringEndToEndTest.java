@@ -14,13 +14,39 @@ public class MonitoringEndToEndTest {
     
     private static final String teamName = "teamName";
     private static final String password = "password";
-    private final FakeSingleGameArena arena = new FakeSingleGameArena();
+    private static final String teamId = "teamId";
+    private static final String gameId = "gameId";
+    private static final String x = "x";
+    private static final String y = "y";
+    private static final String z = "z";
+    private static final String t = "t";
+    
+    private final FakeSingleGameArena arena = new FakeSingleGameArena(teamName, password, teamId, gameId);
     private final ApplicationRunner application = new ApplicationRunner();
     
-    @Test public void showTeamId() {
-        String teamId = arena.start(teamName, password);
+    @Test public void showsTeamId() {
+        arena.start();
         application.join(arena.uri, teamName, password);
         application.showsTeamId(teamId);
+        application.stop();
+        arena.stop();
+    }
+    
+    @Test public void showsGameId() {
+        arena.start();
+        application.join(arena.uri, teamName, password);
+        application.showsGameId(gameId);
+        application.stop();
+        arena.stop();
+    }
+    
+    @Test public void showsMoves() {
+        arena.start();
+        application.join(arena.uri, teamName, password);
+        application.play(gameId, x, y);
+        application.showsMove(x, y);
+        application.play(gameId, z, t);
+        application.showsMove(z, t);
         application.stop();
         arena.stop();
     }

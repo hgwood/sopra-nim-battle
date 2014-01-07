@@ -1,8 +1,12 @@
 package fr.notfound;
 
 import static java.lang.Integer.parseInt;
-import fr.notfound.domain.Arena;
-import fr.notfound.domain.Team;
+
+import java.io.*;
+
+import fr.notfound.domain.*;
+import fr.notfound.recording.GameRecorder;
+import fr.notfound.recording.Decision;
 
 public class Main {
 
@@ -13,10 +17,37 @@ public class Main {
 
     private static Jetty server;
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         Arena arena = new CompositionRoot().arena(args[argArenaUrl]);
-        Team team = arena.join(args[argTeamName], args[argPassword]);
-        server = Jetty.onPort(parseInt(args[argMonitoringPort])).handle("/", team.toString()).start();
+        final Team team = arena.join(args[argTeamName], args[argPassword]);
+        final GameRecorder game = new GameRecorder(team.currentVersus());
+        //game.play(new Move("0", "0"));
+        //game.play(new Move("42", "42"));
+        
+        server = Jetty.onPort(parseInt(args[argMonitoringPort]))
+            .handle("/", new Jetty.WriterHandler() {
+                @Override public void handle(Writer responseWriter) {
+                    PrintWriter responsePrintWriter = new PrintWriter(responseWriter);
+                    responsePrintWriter.println(args[argTeamName]);
+                    responsePrintWriter.println(args[argPassword]);
+                    responsePrintWriter.println(team.toString());
+                    responsePrintWriter.println(game.toString());
+                    for (Decision move : game.getRecordedMoves()) {
+                        responsePrintWriter.println(move);
+                    }
+                }
+            })
+            .handle("/play/gameId/x/y", new Runnable() {
+                @Override public void run() {
+                    game.play(new Move("x", "y"));
+                }
+            })
+            .handle("/play/gameId/z/t", new Runnable() {
+                @Override public void run() {
+                    game.play(new Move("z", "t"));
+                }
+            })
+            .start();
     }
 
     public static void stop() {
