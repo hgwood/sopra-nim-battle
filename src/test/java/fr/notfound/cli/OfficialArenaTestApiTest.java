@@ -13,7 +13,7 @@ import org.junit.Test;
  */
 public class OfficialArenaTestApiTest {
 
-    private final ReflectCliToOfficialArenaRunner application = new ReflectCliToOfficialArenaRunner();
+    private final CliRunner application = new CliRunner(ReflectCliToOfficialArena.class);
 
     @Test public void pingPong() throws Exception {
         assertThat(application.run("ping"), hasItem("pong"));
