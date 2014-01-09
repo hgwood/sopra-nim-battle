@@ -7,6 +7,7 @@ import static org.junit.Assert.assertThat;
 import java.util.List;
 
 import fr.notfound.cli.CliRunner;
+import fr.notfound.domain.GameStatus;
 
 public class ApplicationRunner {
     
@@ -22,11 +23,11 @@ public class ApplicationRunner {
     }
 
     public void showsGameWasLost() {
-        assertThat(output, hasItem(containsString("Lost")));
+        assertThat(output, hasItem(containsString(GameStatus.Lost.toString())));
     }
 
     public void showsGameWasWon() {
-        assertThat(output, hasItem(containsString("Won")));
+        assertThat(output, hasItem(containsString(GameStatus.Won.toString())));
     }
 
 }

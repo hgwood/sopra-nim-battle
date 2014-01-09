@@ -4,6 +4,7 @@ import static fr.notfound.monitoring.TestUtils.*;
 
 import java.net.URI;
 
+import fr.notfound.domain.GameStatus;
 import fr.notfound.http.server.Jetty;
 import fr.notfound.http.uri.ArenaUriCatalog;
 
@@ -13,8 +14,8 @@ public class FakeArena {
     public final URI uri = localhost(port);
     public final String teamName = "teamName";
     public final String password = "password";
-    public final String teamId = "teamId";
-    public final String gameId = "gameId";
+    private final String teamId = "teamId";
+    private final String gameId = "gameId";
     
     private final ArenaUriCatalog uris = new CompositionRoot().uris("");
     private final Jetty server = Jetty.onPort(port);
@@ -23,7 +24,7 @@ public class FakeArena {
         server
             .handle(uris.teamId(teamName, password), teamId)
             .handle(uris.currentVersus(teamId), gameId)
-            .handle(uris.status(gameId, teamId), "PERDU")
+            .handle(uris.status(gameId, teamId), GameStatus.Lost.wireValue())
             .start(); 
     }
     
@@ -31,7 +32,7 @@ public class FakeArena {
         server
             .handle(uris.teamId(teamName, password), teamId)
             .handle(uris.currentVersus(teamId), gameId)
-            .handle(uris.status(gameId, teamId), "GAGNE")
+            .handle(uris.status(gameId, teamId), GameStatus.Won.wireValue())
             .start(); 
     }
     
