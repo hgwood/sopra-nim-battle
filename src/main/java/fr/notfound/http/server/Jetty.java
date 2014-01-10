@@ -3,6 +3,7 @@ package fr.notfound.http.server;
 import java.io.IOException;
 import java.io.Writer;
 import java.net.URI;
+import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +15,11 @@ import org.eclipse.jetty.server.handler.*;
 public class Jetty {
     
     public static interface WriterHandler {
-        void handle(Writer responseWriter);
+        void handle(Writer responseWriter) throws IOException;
+    }
+    
+    public static interface StringHandler {
+        String handle();
     }
 
     public static Jetty onPort(int port) {
@@ -71,6 +76,43 @@ public class Jetty {
                 try (Writer responseWriter = response.getWriter()) {
                     writerHandler.handle(responseWriter);
                     responseWriter.flush();
+                }
+            }
+        });
+        handlers.addHandler(newHandler);
+        return this;
+    }
+    
+    public Jetty handle(URI path, final WriterHandler writerHandler) {
+        return handle(path.toString(), writerHandler);
+    }
+    
+    public Jetty handle(URI path, final Iterable<String> responses) {
+        ContextHandler newHandler = new ContextHandler(path.toString());
+        newHandler.setHandler(new AbstractHandler() {
+            private final Iterator<String> responseIterator = responses.iterator();
+            @Override public void handle(
+                String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) 
+                throws IOException, ServletException {
+                try (Writer writer = response.getWriter()) {
+                    writer.write(responseIterator.next());
+                    writer.flush();
+                }
+            }
+        });
+        handlers.addHandler(newHandler);
+        return this;
+    }
+    
+    public Jetty handle(URI path, final StringHandler handler) {
+        ContextHandler newHandler = new ContextHandler(path.toString());
+        newHandler.setHandler(new AbstractHandler() {
+            @Override public void handle(
+                String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) 
+                throws IOException, ServletException {
+                try (Writer writer = response.getWriter()) {
+                    writer.write(handler.handle());
+                    writer.flush();
                 }
             }
         });

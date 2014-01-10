@@ -9,7 +9,7 @@ public class EndToEndTest {
     
     private final ApplicationRunner application = 
         new ApplicationRunner(new CliRunner(Main.class));
-    private final FakeArena arena = new FakeArena();
+    private final ArenaConfigurator arena = new ArenaConfigurator();
     
     @After public void after() {
         arena.stop();
@@ -24,6 +24,18 @@ public class EndToEndTest {
     
     @Test public void joinGameThenWins() {
         arena.createWinningGame();
+        application.join(arena);
+        application.showsGameWasWon();
+    }
+    
+    @Test public void joinGameThenPlaysTwoMovesThenLoses() {
+        arena.createLosingGameAfterTwoMoves();
+        application.join(arena);
+        application.showsGameWasLost();
+    }
+    
+    @Test public void joinGameThenPlaysThreeMovesThenWins() {
+        arena.createWinningGameAfterThreeMoves();
         application.join(arena);
         application.showsGameWasWon();
     }

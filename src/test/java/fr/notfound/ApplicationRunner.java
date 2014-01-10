@@ -18,7 +18,7 @@ public class ApplicationRunner {
         this.runner = runner;
     }
 
-    public void join(FakeArena arena) {
+    public void join(ArenaConfigurator arena) {
         output = runner.run(arena.uri.toString(), arena.teamName, arena.password);
     }
 

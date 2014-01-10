@@ -8,7 +8,12 @@ public class Main {
         Arena arena = new CompositionRoot().arena(args[0]);
         Team team = arena.join(args[1], args[2]);
         Game game = team.currentVersus();
-        System.out.println(game.status().toString());
+        GameStatus status = game.status();
+        while (status != GameStatus.Won && status != GameStatus.Lost) {
+            game.play(new Move("x", "y"));
+            status = game.status();
+        }
+        System.out.println(status.toString());
     }
 
 }
