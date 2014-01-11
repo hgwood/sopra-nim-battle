@@ -1,7 +1,7 @@
 package fr.notfound;
 
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.hasItem;
+import static com.google.common.collect.Lists.newArrayList;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 import java.util.List;
@@ -18,9 +18,13 @@ public class ApplicationRunner {
     public ApplicationRunner(CliRunner runner) {
         this.runner = runner;
     }
-
+    
     public void join(ArenaServer arena) {
-        output = runner.run(arena.uri.toString(), arena.teamName, arena.password);
+        join(arena, 1);
+    }
+
+    public void join(ArenaServer arena, int numberOfGamesToPlay) {
+        output = runner.run(arena.uri.toString(), arena.teamName, arena.password, String.valueOf(numberOfGamesToPlay));
     }
 
     public void showsGameWasLost() {
@@ -33,6 +37,13 @@ public class ApplicationRunner {
     
     public void showsGameWasCanceled() {
         assertThat(output, hasItem(containsString(GameStatus.Canceled.toString())));
+    }
+
+    public void showsResult(GameStatus... results) {
+        List<String> resultsAsWireValues = newArrayList();
+        for (GameStatus result : results)
+            resultsAsWireValues.add(result.toString());
+        assertThat(output, hasItems((String[])resultsAsWireValues.toArray(new String[0])));
     }
 
 }

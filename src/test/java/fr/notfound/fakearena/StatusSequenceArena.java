@@ -10,8 +10,9 @@ import fr.notfound.http.TextArena;
  * An arena used in tests to check how the application reacts to different
  * sequences of game statuses. It:
  * <ul>
- * <li>supports only one team</li>
- * <li>supports only one versus game and no practice games</li>
+ * <li>always returns the same team ID</li>
+ * <li>always returns the same game ID for versus games</li>
+ * <li>doesn't support practice games</li>
  * <li>supports querying for status, following those rules:
  *   <ul><li>the status changes when {@link #status(String, String)} is called, 
  *   unless the current status is {@link GameStatus#YourTurn}, in which 
@@ -58,9 +59,10 @@ public class StatusSequenceArena implements TextArena {
     }
 
     @Override public String status(String gameId, String teamId) {
-        if (currentStatus == GameStatus.NotYourTurn)
+        String result = currentStatus.wireValue();
+        if (currentStatus != GameStatus.YourTurn && statusSequence.hasNext())
             currentStatus = statusSequence.next();
-        return currentStatus.wireValue();
+        return result;
     }
 
     @Override public String board(String gameId) {
@@ -76,7 +78,8 @@ public class StatusSequenceArena implements TextArena {
             currentStatus = statusSequence.next();
             return MoveResult.Approved.wireValue();
         } else {
-            return MoveResult.NotYourTurn.wireValue();
+            // the test should fail if the application attempts to play when it's not its turn
+            throw new IllegalStateException(); 
         }
     }
 

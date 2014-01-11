@@ -62,5 +62,14 @@ public class ArenaInteractionEndToEndTest {
         application.join(arena);
         application.showsGameWasWon();
     }
+    
+    @Test public void joinMultipleGames() {
+        arena = builder
+            .createVersus().endsWith(Won)
+            .createVersus().endsWith(Lost)
+            .start();
+        application.join(arena, 2);
+        application.showsResult(Won, Lost);
+    }
 
 }
