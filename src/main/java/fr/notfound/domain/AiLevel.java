@@ -5,10 +5,21 @@ import fr.notfound.meta.ValueType;
 @ValueType
 public class AiLevel {
     
-    public final String value;
+    public static AiLevel of(int value) {
+        if (value < 0 || value > 5) {
+            throw new IllegalArgumentException("AI level must be in [0,5]");
+        }
+        return new AiLevel(value);
+    }
+    
+    public final int value;
 
-    public AiLevel(String value) {
+    private AiLevel(int value) {
         this.value = value;
+    }
+    
+    @Override public String toString() {
+        return String.format("{AiLevel: %s}", value);
     }
 
 }

@@ -16,7 +16,7 @@ public class TeamOverArenaClient implements Team {
     }
 
     @Override public Game newPractice(AiLevel level) {
-        return new GameOverArenaClient(client, client.newPractice(level.value, id), id);
+        return new GameOverArenaClient(client, client.newPractice(String.valueOf(level.value), id), id);
     }
 
     @Override public Game currentPractice() {
