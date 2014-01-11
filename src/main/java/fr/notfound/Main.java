@@ -23,7 +23,12 @@ public class Main {
         GameStatus status = game.status();
         while (!status.isFinal) {
             if (status == GameStatus.YourTurn) {
-                game.play(strategy.pickMove(game));
+                MoveResult result = game.play(strategy.pickMove(game));
+                if (result == MoveResult.Rejected) {
+                    return GameStatus.Lost;
+                } else if (result == MoveResult.Victory) {
+                    return GameStatus.Won;
+                }
             }
             status = game.status();
         }
