@@ -10,29 +10,14 @@ public class Main {
     }
     
     public void main(String arenaUri, String teamName, String password, int numberOfGamesToPlay) {
-        Strategy strategy = new CompositionRoot().strategy();
-        Arena arena = new CompositionRoot().arena(arenaUri);
+        CompositionRoot compositionRoot = new CompositionRoot();
+        Arena arena = compositionRoot.arena(arenaUri);
         Team team = arena.join(teamName, password);
+        GameRunner runner = compositionRoot.gameRunner();
         for (int i = 0; i < numberOfGamesToPlay; i++) {
             Game game = team.currentVersus();
-            System.out.println(runGame(game, strategy).toString());
+            System.out.println(runner.run(game).toString());
         }
-    }
-    
-    public GameStatus runGame(Game game, Strategy strategy) {
-        GameStatus status = game.status();
-        while (!status.isFinal) {
-            if (status == GameStatus.YourTurn) {
-                MoveResult result = game.play(strategy.pickMove(game));
-                if (result == MoveResult.Rejected) {
-                    return GameStatus.Lost;
-                } else if (result == MoveResult.Victory) {
-                    return GameStatus.Won;
-                }
-            }
-            status = game.status();
-        }
-        return status;
     }
 
 }

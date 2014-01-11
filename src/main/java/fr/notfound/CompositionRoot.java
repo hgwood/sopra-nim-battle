@@ -3,8 +3,8 @@ package fr.notfound;
 import org.slf4j.LoggerFactory;
 
 import fr.notfound.adapters.ArenaOverArenaClient;
-import fr.notfound.domain.Arena;
-import fr.notfound.domain.Strategy;
+import fr.notfound.domain.*;
+import fr.notfound.domain.impl.StatusHandlerWithStrategy;
 import fr.notfound.http.*;
 import fr.notfound.http.uri.*;
 import fr.notfound.strategies.AlwaysZeroZero;
@@ -28,6 +28,10 @@ public class CompositionRoot {
         String rootUriWithEndingSlash = rootUri.endsWith("/") ? rootUri : rootUri + "/";
         return new HardCodedOfficialUriCatalog(
             new AbsoluteUriFactory(new UncheckedUriFactory(), rootUriWithEndingSlash));
+    }
+    
+    public GameRunner gameRunner() {
+        return new StatusHandlerWithStrategy(strategy());
     }
     
     public Strategy strategy() {
