@@ -34,7 +34,7 @@ public class ArenaServerBuilder {
     
     public ArenaServer start() {
         FakeArena arena = new FakeArena(teamId, versusId, asList(statusSequence).iterator());
-        return ArenaServer.create(port, teamName, password, teamId, versusId, arena);
+        return ArenaServer.start(port, teamName, password, teamId, versusId, arena);
     }
 
 }

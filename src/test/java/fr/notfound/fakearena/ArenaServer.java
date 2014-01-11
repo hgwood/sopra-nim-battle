@@ -8,7 +8,7 @@ public class ArenaServer {
 
     private static final ArenaUriCatalog uris = new CompositionRoot().uris("");
     
-    public static ArenaServer create(int port, 
+    public static ArenaServer start(int port, 
         final String teamName, final String password, final String teamId, final String gameId, 
         final FakeArena arena) {
         return new ArenaServer(Jetty.onPort(port)
