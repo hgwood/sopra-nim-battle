@@ -30,5 +30,9 @@ public class ApplicationRunner {
     public void showsGameWasWon() {
         assertThat(output, hasItem(containsString(GameStatus.Won.toString())));
     }
+    
+    public void showsGameWasCanceled() {
+        assertThat(output, hasItem(containsString(GameStatus.Canceled.toString())));
+    }
 
 }

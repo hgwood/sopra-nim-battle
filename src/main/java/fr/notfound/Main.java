@@ -9,7 +9,7 @@ public class Main {
         Team team = arena.join(args[1], args[2]);
         Game game = team.currentVersus();
         GameStatus status = game.status();
-        while (status != GameStatus.Won && status != GameStatus.Lost) {
+        while (status != GameStatus.Won && status != GameStatus.Lost && status != GameStatus.Canceled) {
             if (status == GameStatus.YourTurn) {
                 game.play(new Move("x", "y"));
             }
