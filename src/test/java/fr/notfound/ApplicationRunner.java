@@ -8,7 +8,7 @@ import java.util.List;
 
 import fr.notfound.cli.CliRunner;
 import fr.notfound.domain.GameStatus;
-import fr.notfound.fakearena.ArenaConfigurator;
+import fr.notfound.fakearena.ArenaServer;
 
 public class ApplicationRunner {
     
@@ -19,7 +19,7 @@ public class ApplicationRunner {
         this.runner = runner;
     }
 
-    public void join(ArenaConfigurator arena) {
+    public void join(ArenaServer arena) {
         output = runner.run(arena.uri.toString(), arena.teamName, arena.password);
     }
 

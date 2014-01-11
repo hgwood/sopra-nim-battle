@@ -6,47 +6,47 @@ import org.junit.After;
 import org.junit.Test;
 
 import fr.notfound.cli.CliRunner;
-import fr.notfound.fakearena.ArenaConfigurator;
+import fr.notfound.fakearena.ArenaServerBuilder;
 import fr.notfound.fakearena.ArenaServer;
 
 public class EndToEndTest {
     
     private final ApplicationRunner application = 
         new ApplicationRunner(new CliRunner(Main.class));
-    private final ArenaConfigurator arena = new ArenaConfigurator();
-    private ArenaServer server;
+    private final ArenaServerBuilder builder = new ArenaServerBuilder();
+    private ArenaServer arena;
     
     @After public void after() {
-        server.stop();
+        arena.stop();
     }
     
     @Test public void joinGameThenLoses() {
-        server = arena.createVersus().endsWith(Lost).start();
+        arena = builder.createVersus().endsWith(Lost).start();
         application.join(arena);
         application.showsGameWasLost();
         
     }
     
     @Test public void joinGameThenWins() {
-        server = arena.createVersus().endsWith(Won).start();
+        arena = builder.createVersus().endsWith(Won).start();
         application.join(arena);
         application.showsGameWasWon();
     }
     
     @Test public void joinGameThenPlaysTwoMovesThenLoses() {
-        server = arena.createVersus().acceptsMoves(2).endsWith(Lost).start();
+        arena = builder.createVersus().acceptsMoves(2).endsWith(Lost).start();
         application.join(arena);
         application.showsGameWasLost();
     }
     
     @Test public void joinGameThenPlaysThreeMovesThenWins() {
-        server = arena.createVersus().acceptsMoves(3).endsWith(Won).start();
+        arena = builder.createVersus().acceptsMoves(3).endsWith(Won).start();
         application.join(arena);
         application.showsGameWasWon();
     }
     
     @Test public void joinGameThenIgnoresNonPlayingStatusesThenWins() {
-        server = arena.createVersus().delays(3).endsWith(Won).start();
+        arena = builder.createVersus().delays(3).endsWith(Won).start();
         application.join(arena);
         application.showsGameWasWon();
     }
