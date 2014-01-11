@@ -27,43 +27,43 @@ public class ArenaInteractionEndToEndTest {
         arena.stop();
     }
     
-    @Test public void joinGameThenLoses() {
+    @Test public void reportsLoss() {
         arena = builder.createVersus().endsWith(Lost).start();
         application.join(arena);
         application.showsGameWasLost();
     }
     
-    @Test public void joinGameThenWins() {
+    @Test public void reportsVictory() {
         arena = builder.createVersus().endsWith(Won).start();
         application.join(arena);
         application.showsGameWasWon();
     }
     
-    @Test public void joinGameThenAcknowledgeCancelation() {
+    @Test public void reportsCancelation() {
         arena = builder.createVersus().endsWith(Canceled).start();
         application.join(arena);
         application.showsGameWasCanceled();
     }
     
-    @Test public void joinGameThenPlaysTwoMovesThenLoses() {
+    @Test public void playsMovesUntilDefeat() {
         arena = builder.createVersus().acceptsMoves(2).endsWith(Lost).start();
         application.join(arena);
         application.showsGameWasLost();
     }
     
-    @Test public void joinGameThenPlaysThreeMovesThenWins() {
+    @Test public void playsMovesUntilVictory() {
         arena = builder.createVersus().acceptsMoves(3).endsWith(Won).start();
         application.join(arena);
         application.showsGameWasWon();
     }
     
-    @Test public void joinGameThenIgnoresNonPlayingStatusesThenWins() {
+    @Test public void doesntPlayIfNotItsTurn() {
         arena = builder.createVersus().delays(3).endsWith(Won).start();
         application.join(arena);
         application.showsGameWasWon();
     }
     
-    @Test public void joinMultipleGames() {
+    @Test public void playsMultipleGames() {
         arena = builder
             .createVersus().endsWith(Won)
             .createVersus().endsWith(Lost)
