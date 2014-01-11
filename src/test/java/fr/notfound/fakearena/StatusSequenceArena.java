@@ -69,7 +69,7 @@ public class StatusSequenceArena implements TextArena {
         throw new UnsupportedOperationException();
     }
 
-    @Override public String lastMove(String gameId) {
+    @Override public String latestMove(String gameId) {
         throw new UnsupportedOperationException();
     }
 

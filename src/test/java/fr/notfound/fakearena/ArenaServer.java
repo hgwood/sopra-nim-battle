@@ -57,7 +57,7 @@ public class ArenaServer {
             })
             .handle(uris.lastMove(gameId), new Jetty.StringHandler() {
                 @Override public String handle() {
-                    return arena.lastMove(gameId);
+                    return arena.latestMove(gameId);
                 }
             })
             .handle(uris.play(gameId, teamId, "0", "0"), new Jetty.StringHandler() {

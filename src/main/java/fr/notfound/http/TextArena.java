@@ -11,7 +11,7 @@ public interface TextArena {
     
     String status(String gameId, String teamId);
     String board(String gameId);
-    String lastMove(String gameId);
+    String latestMove(String gameId);
     String play(String gameId, String teamId, String x, String y);
 
 }

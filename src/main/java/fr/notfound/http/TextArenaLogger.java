@@ -61,9 +61,9 @@ public class TextArenaLogger implements TextArena {
         return result;
     }
 
-    @Override public String lastMove(String gameId) {
+    @Override public String latestMove(String gameId) {
         logger.info("lastMove(gameId: \"{}\")", gameId);
-        String result = delegate.lastMove(gameId);
+        String result = delegate.latestMove(gameId);
         logger.info("lastMove(gameId: \"{}\") -> \"{}\"", gameId, result);
         return result;
     }

@@ -40,7 +40,7 @@ public class TextArenaClient implements TextArena {
         return client.read(uris.board(gameId));
     }
 
-    @Override public String lastMove(String gameId) {
+    @Override public String latestMove(String gameId) {
         return client.read(uris.lastMove(gameId));
     }
 

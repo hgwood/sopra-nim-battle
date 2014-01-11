@@ -28,7 +28,7 @@ public class GameOverArenaClient implements Game {
     }
 
     @Override public Move latestMove() {
-        return Move.parse(client.lastMove(gameId));
+        return Move.parse(client.latestMove(gameId));
     }
 
     @Override public MoveResult play(Move move) {
