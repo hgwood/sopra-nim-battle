@@ -4,7 +4,7 @@ import fr.notfound.domain.GameStatus;
 
 public interface GameBuilder {
 
-    GameBuilder thatAcceptsMoves(int numberOfMoves);
-    ArenaBuilder thenEndsWith(GameStatus status);
+    GameBuilder acceptsMoves(int numberOfMoves);
+    ArenaBuilder endsWith(GameStatus status);
 
 }

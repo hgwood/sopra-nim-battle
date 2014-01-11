@@ -8,6 +8,7 @@ import java.util.List;
 
 import fr.notfound.cli.CliRunner;
 import fr.notfound.domain.GameStatus;
+import fr.notfound.fakearena.ArenaConfigurator;
 
 public class ApplicationRunner {
     

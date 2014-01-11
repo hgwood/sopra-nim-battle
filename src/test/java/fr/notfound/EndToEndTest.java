@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Test;
 
 import fr.notfound.cli.CliRunner;
+import fr.notfound.fakearena.ArenaConfigurator;
 import fr.notfound.fakearena.ArenaServer;
 
 public class EndToEndTest {
@@ -20,26 +21,26 @@ public class EndToEndTest {
     }
     
     @Test public void joinGameThenLoses() {
-        server = arena.createVersus().thenEndsWith(Lost).start();
+        server = arena.createVersus().endsWith(Lost).start();
         application.join(arena);
         application.showsGameWasLost();
         
     }
     
     @Test public void joinGameThenWins() {
-        server = arena.createVersus().thenEndsWith(Won).start();
+        server = arena.createVersus().endsWith(Won).start();
         application.join(arena);
         application.showsGameWasWon();
     }
     
     @Test public void joinGameThenPlaysTwoMovesThenLoses() {
-        server = arena.createVersus().thatAcceptsMoves(2).thenEndsWith(Lost).start();
+        server = arena.createVersus().acceptsMoves(2).endsWith(Lost).start();
         application.join(arena);
         application.showsGameWasLost();
     }
     
     @Test public void joinGameThenPlaysThreeMovesThenWins() {
-        server = arena.createVersus().thatAcceptsMoves(3).thenEndsWith(Won).start();
+        server = arena.createVersus().acceptsMoves(3).endsWith(Won).start();
         application.join(arena);
         application.showsGameWasWon();
     }
