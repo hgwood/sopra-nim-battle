@@ -4,8 +4,10 @@ import org.slf4j.LoggerFactory;
 
 import fr.notfound.adapters.ArenaOverArenaClient;
 import fr.notfound.domain.Arena;
+import fr.notfound.domain.Strategy;
 import fr.notfound.http.*;
 import fr.notfound.http.uri.*;
+import fr.notfound.strategies.AlwaysZeroZero;
 
 /**
  * @see <a href="http://blog.ploeh.dk/2011/07/28/CompositionRoot/">The Definition of Composition Root</a>
@@ -26,6 +28,10 @@ public class CompositionRoot {
         String rootUriWithEndingSlash = rootUri.endsWith("/") ? rootUri : rootUri + "/";
         return new HardCodedOfficialUriCatalog(
             new AbsoluteUriFactory(new UncheckedUriFactory(), rootUriWithEndingSlash));
+    }
+    
+    public Strategy strategy() {
+        return new AlwaysZeroZero();
     }
 
 }
