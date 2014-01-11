@@ -32,7 +32,7 @@ public class GameOverArenaClient implements Game {
     }
 
     @Override public MoveResult play(Move move) {
-        return MoveResult.parse(client.play(gameId, teamId, move.x, move.y));
+        return MoveResult.parse(client.play(gameId, teamId, String.valueOf(move.x), String.valueOf(move.y)));
     }
     
     @Override public String toString() {

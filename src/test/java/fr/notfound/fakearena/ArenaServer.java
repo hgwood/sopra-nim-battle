@@ -60,9 +60,9 @@ public class ArenaServer {
                     return arena.lastMove(gameId);
                 }
             })
-            .handle(uris.play(gameId, teamId, "x", "y"), new Jetty.StringHandler() {
+            .handle(uris.play(gameId, teamId, "0", "0"), new Jetty.StringHandler() {
                 @Override public String handle() {
-                    return arena.play(gameId, teamId, "x", "y");
+                    return arena.play(gameId, teamId, "0", "0");
                 }
             })
             .start());

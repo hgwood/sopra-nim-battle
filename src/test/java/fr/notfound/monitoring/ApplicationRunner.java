@@ -28,11 +28,11 @@ public class ApplicationRunner {
         assertThat(contentOf(root), containsString(gameId));
     }
     
-    public void showsMove(String x, String y) {
-        assertThat(contentOf(root), allOf(containsString(x), containsString(y)));
+    public void showsMove(int x, int y) {
+        assertThat(contentOf(root), allOf(containsString(String.valueOf(x)), containsString(String.valueOf(y))));
     }
     
-    public void play(String gameId, String x, String y) {
+    public void play(String gameId, int x, int y) {
         contentOf(URI.create(root + format("/play/%s/%s/%s", gameId, x, y)));
     }
     

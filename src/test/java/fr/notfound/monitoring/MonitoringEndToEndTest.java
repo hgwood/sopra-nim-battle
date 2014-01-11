@@ -16,10 +16,10 @@ public class MonitoringEndToEndTest {
     private static final String password = "password";
     private static final String teamId = "teamId";
     private static final String gameId = "gameId";
-    private static final String x = "x";
-    private static final String y = "y";
-    private static final String z = "z";
-    private static final String t = "t";
+    private static final int x = 0;
+    private static final int y = 1;
+    private static final int z = 2;
+    private static final int t = 3;
     
     private final FakeSingleGameArena arena = new FakeSingleGameArena(teamName, password, teamId, gameId);
     private final ApplicationRunner application = new ApplicationRunner();

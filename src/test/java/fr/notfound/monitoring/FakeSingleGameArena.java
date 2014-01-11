@@ -36,8 +36,8 @@ public class FakeSingleGameArena {
             .handle(uris.status(gameId, teamId), "OUI") // magical constant!
             .handle(uris.board(gameId), "board")
             .handle(uris.lastMove(gameId), "1,1")
-            .handle(uris.play(gameId, teamId, "x", "y"), "OK") // magical constants!
-            .handle(uris.play(gameId, teamId, "z", "t"), "OK") // magical constants!
+            .handle(uris.play(gameId, teamId, "0", "1"), "OK") // magical constants!
+            .handle(uris.play(gameId, teamId, "2", "3"), "OK") // magical constants!
             .start();
     }
 

@@ -11,7 +11,7 @@ public class Main {
         GameStatus status = game.status();
         while (status != GameStatus.Won && status != GameStatus.Lost && status != GameStatus.Canceled) {
             if (status == GameStatus.YourTurn) {
-                game.play(new Move("x", "y"));
+                game.play(new Move(0, 0));
             }
             status = game.status();
         }

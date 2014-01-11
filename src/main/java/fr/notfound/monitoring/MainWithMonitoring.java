@@ -38,14 +38,14 @@ public class MainWithMonitoring {
                     }
                 }
             })
-            .handle("/play/gameId/x/y", new Runnable() {
+            .handle("/play/gameId/0/1", new Runnable() { // TODO magical constants tied to FakeSingleGameArena
                 @Override public void run() {
-                    game.play(new Move("x", "y"));
+                    game.play(new Move(0, 1)); // TODO magical constants!
                 }
             })
-            .handle("/play/gameId/z/t", new Runnable() {
+            .handle("/play/gameId/2/3", new Runnable() { // TODO magical constants!
                 @Override public void run() {
-                    game.play(new Move("z", "t"));
+                    game.play(new Move(2, 3)); // TODO magical constants!
                 }
             })
             .start();

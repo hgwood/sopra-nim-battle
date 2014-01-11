@@ -16,8 +16,8 @@ import fr.notfound.domain.*;
 
 public class GameRecorderTest {
     
-    private static final String x = "x";
-    private static final String y = "y";
+    private static final int x = 0;
+    private static final int y = 0;
     private static final Move previousMove = new Move(x ,y);
     private static final Move move = new Move(x, y);
     private static final GameStatus statusBefore = GameStatus.Won;
