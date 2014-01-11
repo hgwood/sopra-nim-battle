@@ -20,6 +20,11 @@ public class ArenaServer {
     public static ArenaServer start(final TextArena arena, 
         final String teamName, final String password, final String teamId, final String gameId) {
         return new ArenaServer(teamName, password, Jetty.onPort(port)
+            .handle(uris.ping(), new Jetty.StringHandler() {
+                @Override public String handle() {
+                    return arena.ping();
+                }
+            })
             .handle(uris.teamId(teamName, password), new Jetty.StringHandler() {
                 @Override public String handle() {
                     return arena.teamId(teamName, password);
@@ -30,9 +35,29 @@ public class ArenaServer {
                     return arena.currentVersus(teamId);
                 }
             })
+            .handle(uris.newPractice("0", teamId), new Jetty.StringHandler() {
+                @Override public String handle() {
+                    return arena.newPractice("0", teamId);
+                }
+            })
+            .handle(uris.currentPractice(teamId), new Jetty.StringHandler() {
+                @Override public String handle() {
+                    return arena.currentPractice(teamId);
+                }
+            })
             .handle(uris.status(gameId, teamId), new Jetty.StringHandler() {
                 @Override public String handle() {
                     return arena.status(gameId, teamId);
+                }
+            })
+            .handle(uris.board(gameId), new Jetty.StringHandler() {
+                @Override public String handle() {
+                    return arena.board(gameId);
+                }
+            })
+            .handle(uris.lastMove(gameId), new Jetty.StringHandler() {
+                @Override public String handle() {
+                    return arena.lastMove(gameId);
                 }
             })
             .handle(uris.play(gameId, teamId, "x", "y"), new Jetty.StringHandler() {
