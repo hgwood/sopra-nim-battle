@@ -28,14 +28,14 @@ public class ArenaServerBuilder implements ArenaBuilder, GameBuilder {
         return this;
     }
 
-    @Override public ArenaServer start() {
-        FakeArena arena = new FakeArena(teamId, versusId, statusSequence.iterator());
-        return ArenaServer.start(teamName, password, teamId, versusId, arena);
-    }
-
     @Override public GameBuilder delays(int numberOfQuery) {
         addToStatusSequence(GameStatus.NotYourTurn, numberOfQuery);
         return this;
+    }
+    
+    @Override public ArenaServer start() {
+        FakeArena arena = new FakeArena(teamId, versusId, statusSequence.iterator());
+        return ArenaServer.start(teamName, password, teamId, versusId, arena);
     }
     
     private void addToStatusSequence(GameStatus status, int times) {

@@ -24,7 +24,6 @@ public class EndToEndTest {
         arena = builder.createVersus().endsWith(Lost).start();
         application.join(arena);
         application.showsGameWasLost();
-        
     }
     
     @Test public void joinGameThenWins() {
@@ -33,7 +32,7 @@ public class EndToEndTest {
         application.showsGameWasWon();
     }
     
-    @Test public void joinGameThenAcknowledgeConcelation() {
+    @Test public void joinGameThenAcknowledgeCancelation() {
         arena = builder.createVersus().endsWith(Canceled).start();
         application.join(arena);
         application.showsGameWasCanceled();
