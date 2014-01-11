@@ -23,8 +23,7 @@ public class ArenaConfigurator implements ArenaBuilder, GameBuilder {
     }
 
     @Override public GameBuilder acceptsMoves(int numberOfMoves) {
-        for (int i = 0; i < numberOfMoves; i++)
-            statusSequence.add(GameStatus.YourTurn);
+        addToStatusSequence(GameStatus.YourTurn, numberOfMoves);
         return this;
     }
 
@@ -36,5 +35,15 @@ public class ArenaConfigurator implements ArenaBuilder, GameBuilder {
     @Override public ArenaServer start() {
         FakeArena arena = new FakeArena(teamId, versusId, statusSequence.iterator());
         return ArenaServer.start(port, teamName, password, teamId, versusId, arena);
+    }
+
+    @Override public GameBuilder delays(int numberOfQuery) {
+        addToStatusSequence(GameStatus.NotYourTurn, numberOfQuery);
+        return this;
+    }
+    
+    private void addToStatusSequence(GameStatus status, int times) {
+        for (int i = 0; i < times; i++)
+            statusSequence.add(status);
     }
 }

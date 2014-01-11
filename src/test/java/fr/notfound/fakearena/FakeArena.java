@@ -42,6 +42,8 @@ public class FakeArena implements PlainTextArenaClient {
     }
 
     @Override public String status(String gameId, String teamId) {
+        if (currentStatus == GameStatus.NotYourTurn)
+            currentStatus = statusSequence.next();
         return currentStatus.wireValue();
     }
 
@@ -56,8 +58,12 @@ public class FakeArena implements PlainTextArenaClient {
     }
 
     @Override public synchronized String play(String gameId, String teamId, String x, String y) {
-        currentStatus = statusSequence.next();
-        return "OK";
+        if (currentStatus == GameStatus.YourTurn) {
+            currentStatus = statusSequence.next();
+            return "OK";
+        } else {
+            return "PTT";
+        }
     }
 
 }

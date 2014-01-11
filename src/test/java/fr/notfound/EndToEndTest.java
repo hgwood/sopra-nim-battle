@@ -44,5 +44,11 @@ public class EndToEndTest {
         application.join(arena);
         application.showsGameWasWon();
     }
+    
+    @Test public void joinGameThenIgnoresNonPlayingStatusesThenWins() {
+        server = arena.createVersus().delays(3).endsWith(Won).start();
+        application.join(arena);
+        application.showsGameWasWon();
+    }
 
 }

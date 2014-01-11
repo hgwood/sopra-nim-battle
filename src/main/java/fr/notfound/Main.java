@@ -10,7 +10,9 @@ public class Main {
         Game game = team.currentVersus();
         GameStatus status = game.status();
         while (status != GameStatus.Won && status != GameStatus.Lost) {
-            game.play(new Move("x", "y"));
+            if (status == GameStatus.YourTurn) {
+                game.play(new Move("x", "y"));
+            }
             status = game.status();
         }
         System.out.println(status.toString());
