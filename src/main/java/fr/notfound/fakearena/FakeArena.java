@@ -55,7 +55,7 @@ public class FakeArena implements PlainTextArenaClient {
         return null;
     }
 
-    @Override public String play(String gameId, String teamId, String x, String y) {
+    @Override public synchronized String play(String gameId, String teamId, String x, String y) {
         currentStatus = statusSequence.next();
         return "OK";
     }
