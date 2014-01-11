@@ -6,9 +6,13 @@ import fr.notfound.domain.*;
 public class Main {
 
     public static void main(String[] args) {
-        Arena arena = new CompositionRoot().arena(args[0]);
-        Team team = arena.join(args[1], args[2]);
-        for (int i = 0; i < parseInt(args[3]); i++) {
+        new Main().main(args[0], args[1], args[2], parseInt(args[3]));
+    }
+    
+    public void main(String arenaUri, String teamName, String password, int numberOfGamesToPlay) {
+        Arena arena = new CompositionRoot().arena(arenaUri);
+        Team team = arena.join(teamName, password);
+        for (int i = 0; i < numberOfGamesToPlay; i++) {
             Game game = team.currentVersus();
             GameStatus status = game.status();
             while (status != GameStatus.Won && status != GameStatus.Lost && status != GameStatus.Canceled) {
