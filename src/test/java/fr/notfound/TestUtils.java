@@ -1,4 +1,4 @@
-package fr.notfound.monitoring;
+package fr.notfound;
 
 import java.net.URI;
 

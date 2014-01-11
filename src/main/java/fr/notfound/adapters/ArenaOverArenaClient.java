@@ -2,13 +2,13 @@ package fr.notfound.adapters;
 
 import fr.notfound.domain.Arena;
 import fr.notfound.domain.Team;
-import fr.notfound.http.PlainTextArenaClient;
+import fr.notfound.http.TextArena;
 
 public class ArenaOverArenaClient implements Arena {
     
-    private final PlainTextArenaClient client;
+    private final TextArena client;
 
-    public ArenaOverArenaClient(PlainTextArenaClient client) {
+    public ArenaOverArenaClient(TextArena client) {
         this.client = client;
     }
 

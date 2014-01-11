@@ -2,50 +2,50 @@ package fr.notfound.http;
 
 import fr.notfound.http.uri.ArenaUriCatalog;
 
-public class OfficialArenaClient implements PlainTextArenaClient {
+public class TextArenaClient implements TextArena {
     
-    public final ArenaUriCatalog urls;
+    public final ArenaUriCatalog uris;
     public final UriContentReader client;
     
-    public OfficialArenaClient(ArenaUriCatalog urls, UriContentReader client) {
-        this.urls = urls;
+    public TextArenaClient(ArenaUriCatalog uris, UriContentReader client) {
+        this.uris = uris;
         this.client = client;
     }
 
     @Override public String ping() {
-        return client.read(urls.ping());
+        return client.read(uris.ping());
     }
 
     @Override public String teamId(String teamName, String password) {
-        return client.read(urls.teamId(teamName, password));
+        return client.read(uris.teamId(teamName, password));
     }
 
     @Override public String currentVersus(String teamId) {
-        return client.read(urls.currentVersus(teamId));
+        return client.read(uris.currentVersus(teamId));
     }
 
     @Override public String newPractice(String level, String teamId) {
-        return client.read(urls.newPractice(level, teamId));
+        return client.read(uris.newPractice(level, teamId));
     }
 
     @Override public String currentPractice(String teamId) {
-        return client.read(urls.currentPractice(teamId));
+        return client.read(uris.currentPractice(teamId));
     }
 
     @Override public String status(String gameId, String teamId) {
-        return client.read(urls.status(gameId, teamId));
+        return client.read(uris.status(gameId, teamId));
     }
 
     @Override public String board(String gameId) {
-        return client.read(urls.board(gameId));
+        return client.read(uris.board(gameId));
     }
 
     @Override public String lastMove(String gameId) {
-        return client.read(urls.lastMove(gameId));
+        return client.read(uris.lastMove(gameId));
     }
 
     @Override public String play(String gameId, String teamId, String x, String y) {
-        return client.read(urls.play(gameId, teamId, x, y));
+        return client.read(uris.play(gameId, teamId, x, y));
     }
 
 }

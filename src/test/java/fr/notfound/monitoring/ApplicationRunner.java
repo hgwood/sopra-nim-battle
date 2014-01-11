@@ -1,7 +1,7 @@
 package fr.notfound.monitoring;
 
-import static fr.notfound.monitoring.TestUtils.contentOf;
-import static fr.notfound.monitoring.TestUtils.localhost;
+import static fr.notfound.TestUtils.contentOf;
+import static fr.notfound.TestUtils.localhost;
 import static java.lang.String.format;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.containsString;

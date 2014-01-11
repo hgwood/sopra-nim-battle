@@ -8,10 +8,11 @@ import fr.notfound.domain.GameStatus;
 
 public class ArenaServerBuilder implements ArenaBuilder, GameBuilder {
 
-    private final String teamName = "teamName";
-    private final String password = "password";
-    private final String teamId = "teamId";
-    private final String versusId = "versusId";
+    private final static String teamName = "teamName";
+    private final static String password = "password";
+    private final static String teamId = "teamId";
+    private final static String versusId = "versusId";
+    
     private final List<GameStatus> statusSequence = newArrayList();
 
     @Override public GameBuilder createVersus() {
@@ -34,8 +35,9 @@ public class ArenaServerBuilder implements ArenaBuilder, GameBuilder {
     }
     
     @Override public ArenaServer start() {
-        FakeArena arena = new FakeArena(teamId, versusId, statusSequence.iterator());
-        return ArenaServer.start(teamName, password, teamId, versusId, arena);
+        return ArenaServer.start(
+            new StatusSequenceArena(teamId, versusId, statusSequence.iterator()), 
+            teamName, password, teamId, versusId);
     }
     
     private void addToStatusSequence(GameStatus status, int times) {

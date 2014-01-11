@@ -1,16 +1,16 @@
 package fr.notfound.adapters;
 
 import fr.notfound.domain.*;
-import fr.notfound.http.PlainTextArenaClient;
+import fr.notfound.http.TextArena;
 
 public class TeamOverArenaClient implements Team {
     
     private static final String NoGame = "NA";
     
-    public final PlainTextArenaClient client;
+    public final TextArena client;
     public final String id;
 
-    public TeamOverArenaClient(PlainTextArenaClient client, String id) {
+    public TeamOverArenaClient(TextArena client, String id) {
         this.client = client;
         this.id = id;
     }

@@ -1,6 +1,6 @@
 package fr.notfound.http;
 
-public interface PlainTextArenaClient {
+public interface TextArena {
 
     String ping();
     String teamId(String teamName, String password);

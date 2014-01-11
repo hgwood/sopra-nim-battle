@@ -1,21 +1,24 @@
 package fr.notfound.fakearena;
 
-import static fr.notfound.monitoring.TestUtils.localhost;
+import static fr.notfound.TestUtils.localhost;
 
 import java.net.URI;
 
 import fr.notfound.CompositionRoot;
+import fr.notfound.http.TextArena;
 import fr.notfound.http.server.Jetty;
 import fr.notfound.http.uri.ArenaUriCatalog;
 
+/**
+ * Wraps a {@link TextArena} in a HTTP server.
+ */
 public class ArenaServer {
 
     private static final int port = 8084;
     private static final ArenaUriCatalog uris = new CompositionRoot().uris("");
     
-    public static ArenaServer start(
-        final String teamName, final String password, final String teamId, final String gameId, 
-        final FakeArena arena) {
+    public static ArenaServer start(final TextArena arena, 
+        final String teamName, final String password, final String teamId, final String gameId) {
         return new ArenaServer(teamName, password, Jetty.onPort(port)
             .handle(uris.teamId(teamName, password), new Jetty.StringHandler() {
                 @Override public String handle() {

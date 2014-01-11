@@ -9,7 +9,14 @@ import fr.notfound.cli.CliRunner;
 import fr.notfound.fakearena.ArenaServerBuilder;
 import fr.notfound.fakearena.ArenaServer;
 
-public class EndToEndTest {
+/**
+ * Tests how the application interacts with the arena and manages games. They
+ * don't make any assumptions on the strategy used.
+ * <p>
+ * Theses tests are fully end-to-end: they start a HTTP server to fake out an 
+ * arena, then run the application code through the main method.
+ */
+public class ArenaInteractionEndToEndTest {
     
     private final ApplicationRunner application = 
         new ApplicationRunner(new CliRunner(Main.class));

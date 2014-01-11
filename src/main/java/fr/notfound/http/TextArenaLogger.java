@@ -2,12 +2,12 @@ package fr.notfound.http;
 
 import org.slf4j.Logger;
 
-public class LoggingArenaClient implements PlainTextArenaClient {
+public class TextArenaLogger implements TextArena {
     
-    private final PlainTextArenaClient delegate;
+    private final TextArena delegate;
     private final Logger logger;
 
-    public LoggingArenaClient(PlainTextArenaClient delegate, Logger logger) {
+    public TextArenaLogger(TextArena delegate, Logger logger) {
         this.delegate = delegate;
         this.logger = logger;
     }

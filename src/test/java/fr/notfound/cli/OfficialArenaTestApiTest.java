@@ -7,7 +7,7 @@ import static fr.notfound.cli.Matchers.*;
 import org.junit.Test;
 
 /**
- * Call every {@link PlainTextArenaClient} method on the official arena through the
+ * Call every {@link TextArena} method on the official arena through the
  * {@link ReflectCliToOfficialArena} and check the content of the response is of
  * the expected form. <strong>Requires the official arena to be reachable!</strong>
  */

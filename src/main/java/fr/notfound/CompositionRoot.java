@@ -16,10 +16,10 @@ public class CompositionRoot {
         return new ArenaOverArenaClient(arenaClient(uri));
     }
     
-    public PlainTextArenaClient arenaClient(String uri) {
-        return new LoggingArenaClient(
-            new OfficialArenaClient(uris(uri), new ApacheHttpUriContentReader()), 
-            LoggerFactory.getLogger(LoggingArenaClient.class));
+    public TextArena arenaClient(String uri) {
+        return new TextArenaLogger(
+            new TextArenaClient(uris(uri), new ApacheHttpUriContentReader()), 
+            LoggerFactory.getLogger(TextArenaLogger.class));
     }
     
     public ArenaUriCatalog uris(String rootUri) {

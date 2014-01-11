@@ -1,6 +1,6 @@
 package fr.notfound.monitoring;
 
-import static fr.notfound.monitoring.TestUtils.localhost;
+import static fr.notfound.TestUtils.localhost;
 
 import java.net.URI;
 

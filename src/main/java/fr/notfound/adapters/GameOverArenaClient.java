@@ -1,17 +1,17 @@
 package fr.notfound.adapters;
 
 import fr.notfound.domain.*;
-import fr.notfound.http.PlainTextArenaClient;
+import fr.notfound.http.TextArena;
 
 public class GameOverArenaClient implements Game {
     
     private static final String NoBoard = "NA";
     
-    private final PlainTextArenaClient client;
+    private final TextArena client;
     private final String gameId;
     private final String teamId;
 
-    public GameOverArenaClient(PlainTextArenaClient client, String gameId, String teamId) {
+    public GameOverArenaClient(TextArena client, String gameId, String teamId) {
         this.client = client;
         this.gameId = gameId;
         this.teamId = teamId;

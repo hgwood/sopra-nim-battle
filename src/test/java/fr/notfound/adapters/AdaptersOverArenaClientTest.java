@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import fr.notfound.domain.AiLevel;
 import fr.notfound.domain.GameStatus;
-import fr.notfound.http.PlainTextArenaClient;
+import fr.notfound.http.TextArena;
 
 public class AdaptersOverArenaClientTest {
     
@@ -19,7 +19,7 @@ public class AdaptersOverArenaClientTest {
     public static final String gameId = "gameId";
     public static final String aiLevel = "easy";
     
-    public final PlainTextArenaClient client = mock(PlainTextArenaClient.class);
+    public final TextArena client = mock(TextArena.class);
     public final ArenaOverArenaClient sut = new ArenaOverArenaClient(client);
     
     @Test public void communicatesThroughTheSameClientAllTheWay() {
