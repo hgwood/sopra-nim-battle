@@ -46,6 +46,13 @@ public class TextArenaLogger implements TextArena {
         logger.info("currentPractice(teamId: \"{}\") -> \"{}\"", teamId, result);
         return result;
     }
+    
+    @Override public String opponent(String gameId, String teamId) {
+        logger.info("opponent(gameId: \"{}\", teamId: \"{}\")", gameId, teamId);
+        String result = delegate.opponent(gameId, teamId);
+        logger.info("opponent(gameId: \"{}\", teamId: \"{}\") -> \"{}\"", gameId, teamId, result);
+        return result;
+    }
 
     @Override public String status(String gameId, String teamId) {
         logger.info("status(gameId: \"{}\", teamId: \"{}\")", gameId, teamId);

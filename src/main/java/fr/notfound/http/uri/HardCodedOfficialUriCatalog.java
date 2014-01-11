@@ -1,6 +1,7 @@
 package fr.notfound.http.uri;
 
 import static java.lang.String.format;
+
 import java.net.URI;
 
 public class HardCodedOfficialUriCatalog implements ArenaUriCatalog {
@@ -29,6 +30,10 @@ public class HardCodedOfficialUriCatalog implements ArenaUriCatalog {
 
     @Override public URI currentPractice(String teamId) {
         return factory.get(format("practice/next/%s", teamId));
+    }
+    
+    @Override public URI opponent(String gameId, String teamId) {
+        return factory.get(format("game/opponent/%s/%s", gameId, teamId));
     }
 
     @Override public URI status(String gameId, String teamId) {

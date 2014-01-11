@@ -9,6 +9,7 @@ public interface TextArena {
     String newPractice(String level, String teamId);
     String currentPractice(String teamId);
     
+    String opponent(String gameId, String teamId);
     String status(String gameId, String teamId);
     String board(String gameId);
     String latestMove(String gameId);

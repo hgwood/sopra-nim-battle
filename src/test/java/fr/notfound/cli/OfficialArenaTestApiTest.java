@@ -4,6 +4,7 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import static fr.notfound.cli.Matchers.*;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -34,6 +35,11 @@ public class OfficialArenaTestApiTest {
     @Test public void currentPractice() throws Exception {
         assertThat(application.run("currentPractice", "0"), hasItem(that(is(anId()))));
     }
+    
+    @Ignore // not implemented on the test API
+    @Test public void opponent() throws Exception {
+        assertThat(application.run("opponent", "0", "0"), hasItem(that(is(aStatus()))));
+    }
 
     @Test public void status() throws Exception {
         assertThat(application.run("status", "0", "0"), hasItem(that(is(aStatus()))));
@@ -43,8 +49,8 @@ public class OfficialArenaTestApiTest {
         assertThat(application.run("board", "0"), hasItem(that(is(aBoard()))));
     }
 
-    @Test public void lastMove() throws Exception {
-        assertThat(application.run("lastMove", "0"), hasItem(that(is(aMove()))));
+    @Test public void latestMove() throws Exception {
+        assertThat(application.run("latestMove", "0"), hasItem(that(is(aMove()))));
     }
 
     @Test public void play() throws Exception {

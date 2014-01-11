@@ -13,6 +13,7 @@ import fr.notfound.http.TextArena;
  * <li>always returns the same team ID</li>
  * <li>always returns the same game ID for versus games</li>
  * <li>doesn't support practice games</li>
+ * <li>doesn't support querying for the opponent, the board or the latestMove</li>
  * <li>supports querying for status, following those rules:
  *   <ul><li>the status changes when {@link #status(String, String)} is called, 
  *   unless the current status is {@link GameStatus#YourTurn}, in which 
@@ -55,6 +56,10 @@ public class StatusSequenceArena implements TextArena {
     }
 
     @Override public String currentPractice(String teamId) {
+        throw new UnsupportedOperationException();
+    }
+    
+    @Override public String opponent(String gameId, String teamId) {
         throw new UnsupportedOperationException();
     }
 

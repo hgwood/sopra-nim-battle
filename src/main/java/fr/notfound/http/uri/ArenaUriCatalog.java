@@ -11,6 +11,7 @@ public interface ArenaUriCatalog {
     URI newPractice(String level, String teamId);
     URI currentPractice(String teamId);
     
+    URI opponent(String gameId, String teamId);
     URI status(String gameId, String teamId);
     URI board(String gameId);
     URI lastMove(String gameId);

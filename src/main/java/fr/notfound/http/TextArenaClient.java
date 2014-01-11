@@ -31,6 +31,10 @@ public class TextArenaClient implements TextArena {
     @Override public String currentPractice(String teamId) {
         return client.read(uris.currentPractice(teamId));
     }
+    
+    @Override public String opponent(String gameId, String teamId) {
+        return client.read(uris.opponent(gameId, teamId));
+    }
 
     @Override public String status(String gameId, String teamId) {
         return client.read(uris.status(gameId, teamId));
