@@ -14,15 +14,19 @@ public class Main {
         Team team = arena.join(teamName, password);
         for (int i = 0; i < numberOfGamesToPlay; i++) {
             Game game = team.currentVersus();
-            GameStatus status = game.status();
-            while (status != GameStatus.Won && status != GameStatus.Lost && status != GameStatus.Canceled) {
-                if (status == GameStatus.YourTurn) {
-                    game.play(new Move(0, 0));
-                }
-                status = game.status();
-            }
-            System.out.println(status.toString());
+            System.out.println(runGame(game).toString());
         }
+    }
+    
+    public GameStatus runGame(Game game) {
+        GameStatus status = game.status();
+        while (status != GameStatus.Won && status != GameStatus.Lost && status != GameStatus.Canceled) {
+            if (status == GameStatus.YourTurn) {
+                game.play(new Move(0, 0));
+            }
+            status = game.status();
+        }
+        return status;
     }
 
 }
