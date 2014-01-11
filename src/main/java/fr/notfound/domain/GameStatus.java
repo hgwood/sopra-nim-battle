@@ -4,11 +4,17 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableBiMap;
 
 public enum GameStatus {
-    YourTurn,
-    NotYourTurn,
-    Won,
-    Lost,
-    Canceled;
+    YourTurn(false),
+    NotYourTurn(false),
+    Won(true),
+    Lost(true),
+    Canceled(true);
+    
+    public final boolean isFinal;
+    
+    private GameStatus(boolean isFinal) {
+        this.isFinal = isFinal;
+    }
     
     public String wireValue() {
         return wireValues.get(this);

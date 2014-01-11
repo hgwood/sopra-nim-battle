@@ -20,7 +20,7 @@ public class Main {
     
     public GameStatus runGame(Game game) {
         GameStatus status = game.status();
-        while (status != GameStatus.Won && status != GameStatus.Lost && status != GameStatus.Canceled) {
+        while (!status.isFinal) {
             if (status == GameStatus.YourTurn) {
                 game.play(new Move(0, 0));
             }
