@@ -9,12 +9,16 @@ import org.junit.Test;
 
 /**
  * Call every {@link TextArena} method on the official arena through the
- * {@link ReflectCliToOfficialArena} and check the content of the response is of
- * the expected form. <strong>Requires the official arena to be reachable!</strong>
+ * {@link ReflectCliToOfficialTestArena} and check the content of the response is of
+ * the expected form. <strong>Requires the official test arena to be 
+ * reachable!</strong>
+ * <p>
+ * Note that these tests are not designed to work against the real API 
+ * (parameters are completely random).
  */
-public class OfficialArenaTestApiTest {
+public class OfficialTestArenaHealthCheck {
 
-    private final CliRunner application = new CliRunner(ReflectCliToOfficialArena.class);
+    private final CliRunner application = new CliRunner(ReflectCliToOfficialTestArena.class);
 
     @Test public void pingPong() throws Exception {
         assertThat(application.run("ping"), hasItem("pong"));

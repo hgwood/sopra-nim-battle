@@ -21,7 +21,7 @@ import fr.notfound.http.TextArena;
  * <p>
  * Example: status theGame theTeam
  */
-public class ReflectCliToOfficialArena {
+public class ReflectCliToOfficialTestArena {
     
     public static final String Root = BattleDayParameters.ArenaUri.toString();
     public static final int ArgMethod = 0;

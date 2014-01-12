@@ -1,13 +1,12 @@
-package fr.notfound.bots;
+package fr.notfound;
 
 import static java.lang.Integer.parseInt;
-import fr.notfound.CompositionRoot;
 import fr.notfound.domain.*;
 
-public class Main {
+public class SinglePracticeMain {
     
     public static void main(String[] args) {
-        new Main().main(args[0], args[1], args[2], parseInt(args[3]));
+        new SinglePracticeMain().main(args[0], args[1], args[2], parseInt(args[3]));
     }
     
     public void main(String arenaUri, String teamName, String password, int aiLevel) {

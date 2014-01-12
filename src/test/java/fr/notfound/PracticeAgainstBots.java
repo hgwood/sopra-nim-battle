@@ -1,4 +1,4 @@
-package fr.notfound.bots;
+package fr.notfound;
 
 import static fr.notfound.BattleDayParameters.*;
 import static java.util.Arrays.asList;
@@ -10,9 +10,12 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import fr.notfound.ApplicationRunner;
 import fr.notfound.cli.CliRunner;
 
+/**
+ * Runs a practice game against each bot on the battle-day arena.
+ * <strong>Requires the official battle-day arena to be reachable!</strong>
+ */
 @RunWith(Parameterized.class)
 public class PracticeAgainstBots {
 
@@ -23,7 +26,7 @@ public class PracticeAgainstBots {
 
     private final int aiLevel;
     private final ApplicationRunner application =
-        new ApplicationRunner(new CliRunner(Main.class));
+        new ApplicationRunner(new CliRunner(SinglePracticeMain.class));
 
     public PracticeAgainstBots(int aiLevel) {
         this.aiLevel = aiLevel;
