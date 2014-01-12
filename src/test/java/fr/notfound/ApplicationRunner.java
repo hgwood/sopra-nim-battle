@@ -20,8 +20,13 @@ public class ApplicationRunner {
         this.runner = runner;
     }
     
+    public void join(URI arenaUri, String teamName, String password, int numberOfGamesToPlay, int nextGameRetryDelay) {
+        output = runner.run(arenaUri.toString(), teamName, password, 
+            String.valueOf(numberOfGamesToPlay), String.valueOf(nextGameRetryDelay));
+    }
+    
     public void join(URI arenaUri, String teamName, String password, int numberOfGamesToPlay) {
-        output = runner.run(arenaUri.toString(), teamName, password, String.valueOf(numberOfGamesToPlay));
+        output = runner.run(arenaUri.toString(), teamName, password, String.valueOf(numberOfGamesToPlay), "0");
     }
     
     public void join(ArenaServer arena, int numberOfGamesToPlay) {

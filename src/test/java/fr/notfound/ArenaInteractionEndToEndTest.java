@@ -58,7 +58,7 @@ public class ArenaInteractionEndToEndTest {
     }
     
     @Test public void doesntPlayIfNotItsTurn() {
-        arena = builder.createVersus().delays(3).endsWith(Won).start();
+        arena = builder.createVersus().delaysTurn(3).endsWith(Won).start();
         application.join(arena);
         application.showsGameWasWon();
     }
@@ -70,6 +70,15 @@ public class ArenaInteractionEndToEndTest {
             .start();
         application.join(arena, 2);
         application.showsResult(Won, Lost);
+    }
+    
+    @Test public void retriesIfNoGameAvailable() {
+        arena = builder
+            .delaysGame(2)
+            .createVersus().endsWith(Won)
+            .start();
+        application.join(arena);
+        application.showsGameWasWon();
     }
 
 }

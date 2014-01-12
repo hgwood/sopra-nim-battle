@@ -27,43 +27,41 @@ import fr.notfound.http.TextArena;
  */
 public class StatusSequenceArena implements TextArena {
 
-    private final String teamId;
-    private final String versusId;
+    private final TextArena delegate;
     private final Iterator<GameStatus> statusSequence;
     private GameStatus currentStatus;
 
-    public StatusSequenceArena(String teamId, String versusId, Iterator<GameStatus> statusSequence) {
-        this.teamId = teamId;
-        this.versusId = versusId;
+    public StatusSequenceArena(TextArena delegate, Iterator<GameStatus> statusSequence) {
+        this.delegate = delegate;
         this.statusSequence = statusSequence;
         this.currentStatus = statusSequence.next();
     }
 
     @Override public String ping() {
-        return "pong";
+        return delegate.ping();
     }
 
     @Override public String teamId(String teamName, String password) {
-        return teamId;
+        return delegate.teamId(teamName, password);
     }
 
     @Override public String currentVersus(String teamId) {
-        return versusId;
+        return delegate.currentVersus(teamId);
     }
 
     @Override public String newPractice(String level, String teamId) {
-        throw new UnsupportedOperationException();
+        return delegate.newPractice(level, teamId);
     }
 
     @Override public String currentPractice(String teamId) {
-        throw new UnsupportedOperationException();
+        return delegate.currentPractice(teamId);
     }
     
     @Override public String opponent(String gameId, String teamId) {
-        throw new UnsupportedOperationException();
+        return delegate.opponent(gameId, teamId);
     }
 
-    @Override public String status(String gameId, String teamId) {
+    @Override public synchronized String status(String gameId, String teamId) {
         String result = currentStatus.wireValue();
         if (currentStatus != GameStatus.YourTurn && statusSequence.hasNext())
             currentStatus = statusSequence.next();
@@ -71,11 +69,11 @@ public class StatusSequenceArena implements TextArena {
     }
 
     @Override public String board(String gameId) {
-        throw new UnsupportedOperationException();
+        return delegate.board(gameId);
     }
 
     @Override public String latestMove(String gameId) {
-        throw new UnsupportedOperationException();
+        return delegate.latestMove(gameId);
     }
 
     @Override public synchronized String play(String gameId, String teamId, String x, String y) {

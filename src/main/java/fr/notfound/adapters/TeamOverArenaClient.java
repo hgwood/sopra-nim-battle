@@ -5,7 +5,7 @@ import fr.notfound.http.TextArena;
 
 public class TeamOverArenaClient implements Team {
     
-    private static final String NoGame = "NA";
+    public static final String NoGame = "NA";
     
     public final TextArena client;
     public final String id;

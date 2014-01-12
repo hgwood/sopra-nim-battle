@@ -6,17 +6,41 @@ import fr.notfound.domain.*;
 public class MultipleVersusMain {
 
     public static void main(String[] args) {
-        new MultipleVersusMain().main(args[0], args[1], args[2], parseInt(args[3]));
+        new MultipleVersusMain(args[0], parseInt(args[4]))
+            .play(args[1], args[2], parseInt(args[3]));
     }
     
-    public void main(String arenaUri, String teamName, String password, int numberOfGamesToPlay) {
+    private final String arenaUri;
+    private final int nextGameRetryDelay;
+    
+    public MultipleVersusMain(String arenaUri, int nextGameRetryDelay) {
+        this.arenaUri = arenaUri;
+        this.nextGameRetryDelay = nextGameRetryDelay;
+    }
+    
+    public void play(String teamName, String password, int numberOfGamesToPlay) {
         CompositionRoot compositionRoot = new CompositionRoot();
         Arena arena = compositionRoot.arena(arenaUri);
         Team team = arena.join(teamName, password);
         GameRunner runner = compositionRoot.gameRunner();
         for (int i = 0; i < numberOfGamesToPlay; i++) {
-            Game game = team.currentVersus();
+            Game game = retrieveVersus(team);
             System.out.println(runner.run(game).toString());
+        }
+    }
+    
+    private Game retrieveVersus(Team team) {
+        while (true) {
+            try {
+                return team.currentVersus();
+            } catch (ArenaException e) {
+                try {
+                    Thread.sleep(nextGameRetryDelay);
+                } catch (InterruptedException interruption) {
+                    throw new RuntimeException("thread interrupted before a game could be retrieved!", interruption);
+                }
+                continue;
+            }
         }
     }
 
