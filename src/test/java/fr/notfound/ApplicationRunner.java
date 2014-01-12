@@ -4,6 +4,7 @@ import static com.google.common.collect.Lists.newArrayList;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
+import java.net.URI;
 import java.util.List;
 
 import fr.notfound.cli.CliRunner;
@@ -13,18 +14,26 @@ import fr.notfound.fakearena.ArenaServer;
 public class ApplicationRunner {
     
     private final CliRunner runner;
-    private List<String> output;
+    private List<String> output = newArrayList();
 
     public ApplicationRunner(CliRunner runner) {
         this.runner = runner;
     }
     
+    public void join(URI arenaUri, String teamName, String password, int numberOfGamesToPlay) {
+        output = runner.run(arenaUri.toString(), teamName, password, String.valueOf(numberOfGamesToPlay));
+    }
+    
+    public void join(ArenaServer arena, int numberOfGamesToPlay) {
+        join(arena.uri, arena.teamName, arena.password, numberOfGamesToPlay);
+    }
+    
     public void join(ArenaServer arena) {
         join(arena, 1);
     }
-
-    public void join(ArenaServer arena, int numberOfGamesToPlay) {
-        output = runner.run(arena.uri.toString(), arena.teamName, arena.password, String.valueOf(numberOfGamesToPlay));
+    
+    public void playPractice(URI arenaUri, String teamName, String password, int aiLevel) {
+        output = runner.run(arenaUri.toString(), teamName, password, String.valueOf(aiLevel));
     }
 
     public void showsGameWasLost() {
