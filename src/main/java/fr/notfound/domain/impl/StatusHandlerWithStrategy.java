@@ -27,6 +27,12 @@ public class StatusHandlerWithStrategy implements GameRunner {
                 } else if (result == MoveResult.Victory) {
                     return GameStatus.Won;
                 }
+            } else {
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException("thread was interrupted while sleeping", e);
+                }
             }
             status = game.status();
         }
