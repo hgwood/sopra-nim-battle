@@ -16,6 +16,10 @@ public class GameOverArenaClient implements Game {
         this.gameId = gameId;
         this.teamId = teamId;
     }
+    
+    @Override public String opponent() {
+        return client.opponent(gameId, teamId);
+    }
 
     @Override public GameStatus status() {
         return GameStatus.parse(client.status(gameId, teamId));

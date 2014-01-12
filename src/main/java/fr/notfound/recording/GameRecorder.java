@@ -19,6 +19,10 @@ public class GameRecorder implements Game {
     public List<Decision> getRecordedMoves() {
         return Collections.unmodifiableList(recordedMoves);
     }
+    
+    @Override public String opponent() {
+        return gameBeingRecorded.opponent();
+    }
 
     @Override public GameStatus status() {
         return gameBeingRecorded.status();
