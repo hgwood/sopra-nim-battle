@@ -4,6 +4,7 @@ import static java.util.Arrays.copyOfRange;
 
 import java.lang.reflect.Method;
 
+import fr.notfound.BattleDayParameters;
 import fr.notfound.CompositionRoot;
 import fr.notfound.http.TextArena;
 
@@ -22,7 +23,7 @@ import fr.notfound.http.TextArena;
  */
 public class ReflectCliToOfficialArena {
     
-    public static final String Root = "http://ec2-54-200-12-98.us-west-2.compute.amazonaws.com/csnbattlearena/webservices/test/";
+    public static final String Root = BattleDayParameters.ArenaUri.toString();
     public static final int ArgMethod = 0;
     
     public static void main(String[] args) throws Exception {
