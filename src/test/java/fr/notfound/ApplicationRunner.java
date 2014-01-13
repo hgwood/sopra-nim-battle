@@ -40,6 +40,10 @@ public class ApplicationRunner {
     public void playPractice(URI arenaUri, String teamName, String password, int aiLevel) {
         output = runner.run(arenaUri.toString(), teamName, password, String.valueOf(aiLevel));
     }
+    
+    public void playVersus(URI arenaUri, String teamName, String password) {
+        join(arenaUri, teamName, password, 1, 200);
+    }
 
     public void showsGameWasLost() {
         assertThat(output, hasItem(containsString(GameStatus.Lost.toString())));

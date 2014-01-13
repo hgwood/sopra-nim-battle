@@ -9,5 +9,6 @@ public class BattleDayParameters {
     public static final URI ArenaUri = TestArenaUri;
     public static final String TeamName = "404";
     public static final String Password = "password";
+    public static final int NumberOfOpponentTeams = 4;
 
 }
