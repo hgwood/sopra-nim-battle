@@ -28,7 +28,7 @@ public class PracticeAgainstBots {
 
     private final int aiLevel;
     private final ApplicationRunner application =
-        new ApplicationRunner(new CliRunner(SinglePracticeMain.class));
+        new ApplicationRunner(new CliRunner(PracticeMain.class));
 
     public PracticeAgainstBots(int aiLevel) {
         this.aiLevel = aiLevel;
