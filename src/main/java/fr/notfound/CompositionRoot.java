@@ -2,10 +2,10 @@ package fr.notfound;
 
 import org.slf4j.LoggerFactory;
 
-import fr.notfound.adapters.ArenaOverArenaClient;
 import fr.notfound.domain.*;
 import fr.notfound.domain.impl.StatusHandlerWithStrategy;
 import fr.notfound.http.*;
+import fr.notfound.http.adapters.ArenaOverArenaClient;
 import fr.notfound.http.uri.*;
 import fr.notfound.strategies.AlwaysZeroZero;
 

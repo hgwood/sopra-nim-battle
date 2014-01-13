@@ -1,4 +1,4 @@
-package fr.notfound.adapters;
+package fr.notfound.http.adapters;
 
 import fr.notfound.domain.Arena;
 import fr.notfound.domain.Team;

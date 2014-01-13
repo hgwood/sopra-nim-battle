@@ -4,9 +4,9 @@ import static com.google.common.collect.Lists.newArrayList;
 
 import java.util.List;
 
-import fr.notfound.adapters.TeamOverArenaClient;
 import fr.notfound.domain.GameStatus;
 import fr.notfound.http.TextArena;
+import fr.notfound.http.adapters.TeamOverArenaClient;
 
 public class ArenaServerBuilder implements ArenaBuilder, GameBuilder {
 
