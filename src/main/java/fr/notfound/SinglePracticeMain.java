@@ -14,7 +14,7 @@ public class SinglePracticeMain {
         Arena arena = compositionRoot.arena(arenaUri);
         Team team = arena.join(teamName, password);
         Game game = team.newPractice(AiLevel.of(aiLevel));
-        Player runner = compositionRoot.player();
+        Player runner = compositionRoot.practicePlayer();
         GameStatus gameResult = runner.playToCompletion(game);
         System.out.println(gameResult.toString());
     }

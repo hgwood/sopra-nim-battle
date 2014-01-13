@@ -30,12 +30,11 @@ public class CompositionRoot {
             new AbsoluteUriFactory(new UncheckedUriFactory(), rootUriWithEndingSlash));
     }
     
-    public Player player() {
-        return new StatusHandlerWithStrategy(strategy());
+    public Player practicePlayer() {
+        return new StatusHandlerWithStrategy(new AlwaysZeroZero());
     }
     
-    public Strategy strategy() {
-        return new AlwaysZeroZero();
+    public Player versusPlayer() {
+        return new StatusHandlerWithStrategy(new AlwaysZeroZero());
     }
-
 }
