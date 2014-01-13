@@ -1,5 +1,6 @@
 package fr.notfound.monitoring;
 
+import org.junit.After;
 import org.junit.Test;
 
 /**
@@ -24,20 +25,21 @@ public class MonitoringEndToEndTest {
     private final FakeSingleGameArena arena = new FakeSingleGameArena(teamName, password, teamId, gameId);
     private final ApplicationRunner application = new ApplicationRunner();
     
+    @After public void stop() {
+        application.stop();
+        arena.stop();
+    }
+    
     @Test public void showsTeamId() {
         arena.start();
         application.join(arena.uri, teamName, password);
         application.showsTeamId(teamId);
-        application.stop();
-        arena.stop();
     }
     
     @Test public void showsGameId() {
         arena.start();
         application.join(arena.uri, teamName, password);
         application.showsGameId(gameId);
-        application.stop();
-        arena.stop();
     }
     
     @Test public void showsMoves() {
@@ -47,8 +49,6 @@ public class MonitoringEndToEndTest {
         application.showsMove(x, y);
         application.play(gameId, z, t);
         application.showsMove(z, t);
-        application.stop();
-        arena.stop();
     }
 
 }
