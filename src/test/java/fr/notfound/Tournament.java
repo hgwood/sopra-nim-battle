@@ -17,6 +17,7 @@ import fr.notfound.cli.CliRunner;
 
 /**
  * Runs the real battle!
+ * <strong>Requires the official battle-day arena to be reachable!</strong>
  */
 @RunWith(Parameterized.class)
 public class Tournament {
