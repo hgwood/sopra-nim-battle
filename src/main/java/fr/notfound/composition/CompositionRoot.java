@@ -20,13 +20,9 @@ public class CompositionRoot {
     private final int retryDelayWhenNotYourTurn;
     
     public CompositionRoot() {
-        this(0);
+        this(0, 1, 0);
     }
-    
-    public CompositionRoot(int retryDelayWhenNoGameAvailable) {
-        this(retryDelayWhenNoGameAvailable, 100, 0);
-    }
-    
+
     public CompositionRoot(int retryDelayWhenNoGameAvailable, int numberOfAttemptsToRetrieveGame, int retryDelayWhenNotYourTurn) {
         this.retryDelayWhenNoGameAvailable = retryDelayWhenNoGameAvailable;
         this.numberOfAttemptsToRetrieveGame = numberOfAttemptsToRetrieveGame;

@@ -20,26 +20,42 @@ public class ApplicationRunner {
         this.runner = runner;
     }
     
-    public void join(URI arenaUri, String teamName, String password, int nextGameRetryDelay) {
-        output = runner.run(arenaUri.toString(), teamName, password, String.valueOf(nextGameRetryDelay));
-    }
-    
-    public void join(ArenaServer arena) {
-        join(arena.uri, arena.teamName, arena.password, 0);
-    }
-    
     /**
-     * Plays a real practice!
+     * Intended for real practice games.
      */
     public void playPractice(URI arenaUri, String teamName, String password, int aiLevel) {
-        output = runner.run(arenaUri.toString(), teamName, password, String.valueOf(aiLevel));
+        runPractice(arenaUri.toString(), teamName, password, aiLevel, 50, 1, 50);
     }
     
     /**
-     * Plays a real versus!
+     * Intended for real versus games.
      */
     public void playVersus(URI arenaUri, String teamName, String password) {
-        join(arenaUri, teamName, password, 200);
+        runVersus(arenaUri.toString(), teamName, password, 50, 50, 50);
+    }
+    
+    /**
+     * Intended for fake versus games on a local server.
+     */
+    public void playVersus(ArenaServer arena) {
+        runVersus(arena.uri.toString(), arena.teamName, arena.password, 0, 5, 0);
+    }
+    
+    private void runVersus(String arenaUri, String teamName, String password, 
+        int retryDelayWhenNoGameAvailable, int numberOfAttemptsToRetrieveGame, int retryDelayWhenNotYourTurn) {
+        output = runner.run(arenaUri, teamName, password, 
+            String.valueOf(retryDelayWhenNoGameAvailable),
+            String.valueOf(numberOfAttemptsToRetrieveGame),
+            String.valueOf(retryDelayWhenNotYourTurn));
+    }
+    
+    private void runPractice(String arenaUri, String teamName, String password, int aiLevel,
+        int retryDelayWhenNoGameAvailable, int numberOfAttemptsToRetrieveGame, int retryDelayWhenNotYourTurn) {
+        output = runner.run(arenaUri, teamName, password, 
+            String.valueOf(aiLevel),
+            String.valueOf(retryDelayWhenNoGameAvailable),
+            String.valueOf(numberOfAttemptsToRetrieveGame),
+            String.valueOf(retryDelayWhenNotYourTurn));
     }
 
     public void showsGameWasLost() {
@@ -52,13 +68,6 @@ public class ApplicationRunner {
     
     public void showsGameWasCanceled() {
         assertThat(output, hasItem(containsString(GameStatus.Canceled.toString())));
-    }
-
-    public void showsResult(GameStatus... results) {
-        List<String> resultsAsWireValues = newArrayList();
-        for (GameStatus result : results)
-            resultsAsWireValues.add(result.toString());
-        assertThat(output, hasItems((String[])resultsAsWireValues.toArray(new String[0])));
     }
 
 }

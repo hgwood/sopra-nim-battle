@@ -29,37 +29,37 @@ public class ArenaInteractionEndToEndTest {
     
     @Test public void reportsLoss() {
         arena = builder.createVersus().endsWith(Lost).start();
-        application.join(arena);
+        application.playVersus(arena);
         application.showsGameWasLost();
     }
     
     @Test public void reportsVictory() {
         arena = builder.createVersus().endsWith(Won).start();
-        application.join(arena);
+        application.playVersus(arena);
         application.showsGameWasWon();
     }
     
     @Test public void reportsCancelation() {
         arena = builder.createVersus().endsWith(Canceled).start();
-        application.join(arena);
+        application.playVersus(arena);
         application.showsGameWasCanceled();
     }
     
     @Test public void playsMovesUntilDefeat() {
         arena = builder.createVersus().acceptsMoves(2).endsWith(Lost).start();
-        application.join(arena);
+        application.playVersus(arena);
         application.showsGameWasLost();
     }
     
     @Test public void playsMovesUntilVictory() {
         arena = builder.createVersus().acceptsMoves(3).endsWith(Won).start();
-        application.join(arena);
+        application.playVersus(arena);
         application.showsGameWasWon();
     }
     
     @Test public void doesntPlayIfNotItsTurn() {
         arena = builder.createVersus().delaysTurn(3).endsWith(Won).start();
-        application.join(arena);
+        application.playVersus(arena);
         application.showsGameWasWon();
     }
     
@@ -68,7 +68,7 @@ public class ArenaInteractionEndToEndTest {
             .delaysGame(2)
             .createVersus().endsWith(Won)
             .start();
-        application.join(arena);
+        application.playVersus(arena);
         application.showsGameWasWon();
     }
 
