@@ -35,7 +35,7 @@ public class PracticeAgainstBots {
     }
 
     @Test public void wins() {
-        assumeThat(BattleMode, is(true));
+        assumeThat(ArenaUri, is(notNullValue()));
         application.playPractice(ArenaUri, TeamName, Password, aiLevel);
         application.showsGameWasWon();
     }
