@@ -28,7 +28,7 @@ public class TextArenaClient implements TextArena {
         return client.read(uris.newPractice(level, teamId));
     }
 
-    @Override public String currentPractice(String teamId) {
+    @Deprecated @Override public String currentPractice(String teamId) {
         return client.read(uris.currentPractice(teamId));
     }
     

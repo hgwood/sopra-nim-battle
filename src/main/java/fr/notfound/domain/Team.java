@@ -17,8 +17,9 @@ public interface Team {
     /**
      * @return the practice game this team is currently participating to
      * @throws {@link ArenaException} if there is no such game
+     * @deprecated useless, just create a new practice
      */
-    Game currentPractice();
+    @Deprecated Game currentPractice();
     
     /**
      * @return the versus game this team is currently participating to
