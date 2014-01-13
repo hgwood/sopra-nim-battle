@@ -63,15 +63,6 @@ public class ArenaInteractionEndToEndTest {
         application.showsGameWasWon();
     }
     
-    @Test public void playsMultipleGames() {
-        arena = builder
-            .createVersus().endsWith(Won)
-            .createVersus().endsWith(Lost)
-            .start();
-        application.join(arena, 2);
-        application.showsResult(Won, Lost);
-    }
-    
     @Test public void retriesIfNoGameAvailable() {
         arena = builder
             .delaysGame(2)

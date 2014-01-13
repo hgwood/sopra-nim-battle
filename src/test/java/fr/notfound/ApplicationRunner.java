@@ -20,29 +20,26 @@ public class ApplicationRunner {
         this.runner = runner;
     }
     
-    public void join(URI arenaUri, String teamName, String password, int numberOfGamesToPlay, int nextGameRetryDelay) {
-        output = runner.run(arenaUri.toString(), teamName, password, 
-            String.valueOf(numberOfGamesToPlay), String.valueOf(nextGameRetryDelay));
-    }
-    
-    public void join(URI arenaUri, String teamName, String password, int numberOfGamesToPlay) {
-        output = runner.run(arenaUri.toString(), teamName, password, String.valueOf(numberOfGamesToPlay), "0");
-    }
-    
-    public void join(ArenaServer arena, int numberOfGamesToPlay) {
-        join(arena.uri, arena.teamName, arena.password, numberOfGamesToPlay);
+    public void join(URI arenaUri, String teamName, String password, int nextGameRetryDelay) {
+        output = runner.run(arenaUri.toString(), teamName, password, String.valueOf(nextGameRetryDelay));
     }
     
     public void join(ArenaServer arena) {
-        join(arena, 1);
+        join(arena.uri, arena.teamName, arena.password, 0);
     }
     
+    /**
+     * Plays a real practice!
+     */
     public void playPractice(URI arenaUri, String teamName, String password, int aiLevel) {
         output = runner.run(arenaUri.toString(), teamName, password, String.valueOf(aiLevel));
     }
     
+    /**
+     * Plays a real versus!
+     */
     public void playVersus(URI arenaUri, String teamName, String password) {
-        join(arenaUri, teamName, password, 1, 200);
+        join(arenaUri, teamName, password, 200);
     }
 
     public void showsGameWasLost() {
