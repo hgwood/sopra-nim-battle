@@ -1,11 +1,12 @@
-package fr.notfound;
+package fr.notfound.composition;
 
 import org.slf4j.LoggerFactory;
 
-import fr.notfound.domain.*;
+import fr.notfound.domain.Arena;
+import fr.notfound.domain.Player;
 import fr.notfound.domain.impl.StatusHandlerWithStrategy;
 import fr.notfound.http.*;
-import fr.notfound.http.adapters.ArenaOverArenaClient;
+import fr.notfound.http.adapters.*;
 import fr.notfound.http.uri.*;
 import fr.notfound.strategies.AlwaysZeroZero;
 
@@ -14,8 +15,29 @@ import fr.notfound.strategies.AlwaysZeroZero;
  */
 public class CompositionRoot {
     
+    private final int retryDelayWhenNoGameAvailable;
+    private final int numberOfAttemptsToRetrieveGame;
+    
+    public CompositionRoot() {
+        this(0, 5);
+    }
+    
+    public CompositionRoot(int retryDelayWhenNoGameAvailable) {
+        this(retryDelayWhenNoGameAvailable, 5);
+    }
+    
+    public CompositionRoot(int retryDelayWhenNoGameAvailable, int numberOfAttemptsToRetrieveGame) {
+        this.retryDelayWhenNoGameAvailable = retryDelayWhenNoGameAvailable;
+        this.numberOfAttemptsToRetrieveGame = numberOfAttemptsToRetrieveGame;
+    }
+    
     public Arena arena(String uri) {
-        return new ArenaOverArenaClient(arenaClient(uri));
+        TextArena client = arenaClient(uri);
+        return new ArenaOverArenaClient(client, 
+            new TeamOverArenaClientWithRetryFactory(
+                new TeamOverArenaClientFactory(client, 
+                    new GameOverArenaClientFactory(client)), 
+                retryDelayWhenNoGameAvailable, numberOfAttemptsToRetrieveGame));
     }
     
     public TextArena arenaClient(String uri) {
@@ -37,4 +59,5 @@ public class CompositionRoot {
     public Player versusPlayer() {
         return new StatusHandlerWithStrategy(new AlwaysZeroZero());
     }
+    
 }

@@ -1,6 +1,7 @@
 package fr.notfound;
 
 import static java.lang.Integer.parseInt;
+import fr.notfound.composition.CompositionRoot;
 import fr.notfound.domain.*;
 
 public class SinglePracticeMain {

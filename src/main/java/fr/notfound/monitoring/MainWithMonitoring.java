@@ -5,7 +5,7 @@ import static java.lang.Integer.parseInt;
 import java.io.PrintWriter;
 import java.io.Writer;
 
-import fr.notfound.CompositionRoot;
+import fr.notfound.composition.CompositionRoot;
 import fr.notfound.domain.*;
 import fr.notfound.http.server.Jetty;
 import fr.notfound.recording.Decision;

@@ -5,7 +5,7 @@ import static java.util.Arrays.copyOfRange;
 import java.lang.reflect.Method;
 
 import fr.notfound.BattleDayParameters;
-import fr.notfound.CompositionRoot;
+import fr.notfound.composition.CompositionRoot;
 import fr.notfound.http.TextArena;
 
 /**

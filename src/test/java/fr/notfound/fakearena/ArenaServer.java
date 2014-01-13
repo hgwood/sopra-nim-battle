@@ -4,7 +4,7 @@ import static fr.notfound.TestUtils.localhost;
 
 import java.net.URI;
 
-import fr.notfound.CompositionRoot;
+import fr.notfound.composition.CompositionRoot;
 import fr.notfound.http.TextArena;
 import fr.notfound.http.server.Jetty;
 import fr.notfound.http.uri.ArenaUriCatalog;
