@@ -24,7 +24,7 @@ public class VersusSequenceArena implements TextArena {
         return delegate.teamId(teamName, password);
     }
 
-    @Override public String currentVersus(String teamId) {
+    @Override public synchronized String currentVersus(String teamId) {
         String result = currentVersusId;
         if (versusIdSequence.hasNext()) currentVersusId = versusIdSequence.next();
         return result;
