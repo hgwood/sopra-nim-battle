@@ -19,11 +19,11 @@ public class CompositionRoot {
     private final int numberOfAttemptsToRetrieveGame;
     
     public CompositionRoot() {
-        this(0, 5);
+        this(0);
     }
     
     public CompositionRoot(int retryDelayWhenNoGameAvailable) {
-        this(retryDelayWhenNoGameAvailable, 5);
+        this(retryDelayWhenNoGameAvailable, 100);
     }
     
     public CompositionRoot(int retryDelayWhenNoGameAvailable, int numberOfAttemptsToRetrieveGame) {
