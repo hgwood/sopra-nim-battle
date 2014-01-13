@@ -2,13 +2,13 @@ package fr.notfound.composition;
 
 import org.slf4j.LoggerFactory;
 
-import fr.notfound.domain.Arena;
-import fr.notfound.domain.Player;
+import fr.notfound.domain.*;
 import fr.notfound.domain.impl.StatusHandlerWithStrategy;
 import fr.notfound.http.*;
 import fr.notfound.http.adapters.*;
 import fr.notfound.http.uri.*;
 import fr.notfound.strategies.AlwaysZeroZero;
+import fr.notfound.time.ThreadDelay;
 
 /**
  * @see <a href="http://blog.ploeh.dk/2011/07/28/CompositionRoot/">The Definition of Composition Root</a>
@@ -17,18 +17,20 @@ public class CompositionRoot {
     
     private final int retryDelayWhenNoGameAvailable;
     private final int numberOfAttemptsToRetrieveGame;
+    private final int retryDelayWhenNotYourTurn;
     
     public CompositionRoot() {
         this(0);
     }
     
     public CompositionRoot(int retryDelayWhenNoGameAvailable) {
-        this(retryDelayWhenNoGameAvailable, 100);
+        this(retryDelayWhenNoGameAvailable, 100, 0);
     }
     
-    public CompositionRoot(int retryDelayWhenNoGameAvailable, int numberOfAttemptsToRetrieveGame) {
+    public CompositionRoot(int retryDelayWhenNoGameAvailable, int numberOfAttemptsToRetrieveGame, int retryDelayWhenNotYourTurn) {
         this.retryDelayWhenNoGameAvailable = retryDelayWhenNoGameAvailable;
         this.numberOfAttemptsToRetrieveGame = numberOfAttemptsToRetrieveGame;
+        this.retryDelayWhenNotYourTurn = retryDelayWhenNotYourTurn;
     }
     
     public Arena arena(String uri) {
@@ -53,11 +55,15 @@ public class CompositionRoot {
     }
     
     public Player practicePlayer() {
-        return new StatusHandlerWithStrategy(new AlwaysZeroZero());
+        return player(new AlwaysZeroZero());
     }
     
     public Player versusPlayer() {
-        return new StatusHandlerWithStrategy(new AlwaysZeroZero());
+        return player(new AlwaysZeroZero());
+    }
+    
+    private Player player(Strategy strategy) {
+        return new StatusHandlerWithStrategy(strategy, new ThreadDelay(retryDelayWhenNotYourTurn));
     }
     
 }

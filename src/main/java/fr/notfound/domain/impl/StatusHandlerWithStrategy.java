@@ -1,6 +1,7 @@
 package fr.notfound.domain.impl;
 
 import fr.notfound.domain.*;
+import fr.notfound.time.Delay;
 
 /**
  * Plays according to the provided {@link Strategy} each time the game has a
@@ -12,9 +13,11 @@ import fr.notfound.domain.*;
 public class StatusHandlerWithStrategy implements Player {
     
     private final Strategy strategy;
+    private final Delay retryDelayWhenNotYourTurn;
     
-    public StatusHandlerWithStrategy(Strategy strategy) {
+    public StatusHandlerWithStrategy(Strategy strategy, Delay retryDelayWhenNotYourTurn) {
         this.strategy = strategy;
+        this.retryDelayWhenNotYourTurn = retryDelayWhenNotYourTurn;
     }
 
     @Override public GameStatus playToCompletion(Game game) {
@@ -27,13 +30,7 @@ public class StatusHandlerWithStrategy implements Player {
                 } else if (result == MoveResult.Victory) {
                     return GameStatus.Won;
                 }
-            } else {
-                try {
-                    Thread.sleep(200);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException("thread was interrupted while sleeping", e);
-                }
-            }
+            } else retryDelayWhenNotYourTurn.trigger();
             status = game.status();
         }
         return status;
