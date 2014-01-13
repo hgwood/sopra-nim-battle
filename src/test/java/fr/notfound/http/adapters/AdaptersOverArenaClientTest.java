@@ -14,19 +14,19 @@ import fr.notfound.http.TextArena;
 
 public class AdaptersOverArenaClientTest {
     
-    public static final String teamName = "teamName";
-    public static final String password = "password";
-    public static final String teamId = "teamId";
-    public static final String gameId = "gameId";
-    public static final AiLevel aiLevel = AiLevel.of(0);
-    public static final GameStatus status = GameStatus.Won;
+    private static final String teamName = "teamName";
+    private static final String password = "password";
+    private static final String teamId = "teamId";
+    private static final String gameId = "gameId";
+    private static final AiLevel aiLevel = AiLevel.of(0);
+    private static final GameStatus status = GameStatus.Won;
     
-    public final TextArena client = mock(TextArena.class);
-    public final TeamFactory teamFactory = mock(TeamFactory.class);
-    public final GameFactory gameFactory = mock(GameFactory.class);
-    public final ArenaOverArenaClient arenaSut = new ArenaOverArenaClient(client, teamFactory);
-    public final TeamOverArenaClient teamSut = new TeamOverArenaClient(client, gameFactory, teamId);
-    public final GameOverArenaClient gameSut = new GameOverArenaClient(client, gameId, teamId);
+    private final TextArena client = mock(TextArena.class);
+    private final TeamFactory teamFactory = mock(TeamFactory.class);
+    private final GameFactory gameFactory = mock(GameFactory.class);
+    private final ArenaOverArenaClient arenaSut = new ArenaOverArenaClient(client, teamFactory);
+    private final TeamOverArenaClient teamSut = new TeamOverArenaClient(client, gameFactory, teamId);
+    private final GameOverArenaClient gameSut = new GameOverArenaClient(client, gameId, teamId);
     
     @Test public void arenaCreatesTeamWithCorrectId() {
         when(client.teamId(teamName, password)).thenReturn(teamId);
