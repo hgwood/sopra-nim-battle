@@ -35,7 +35,7 @@ public class Tournament {
     }
 
     private final ApplicationRunner application =
-        new ApplicationRunner(new CliRunner(MultipleVersusMain.class));
+        new ApplicationRunner(new CliRunner(VersusMain.class));
 
     public Tournament(int opponent) {
         // nothing to do with the data, see comment in data()

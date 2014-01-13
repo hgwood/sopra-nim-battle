@@ -19,7 +19,7 @@ import fr.notfound.fakearena.ArenaServer;
 public class ArenaInteractionEndToEndTest {
     
     private final ApplicationRunner application = 
-        new ApplicationRunner(new CliRunner(MultipleVersusMain.class));
+        new ApplicationRunner(new CliRunner(VersusMain.class));
     private final ArenaServerBuilder builder = new ArenaServerBuilder();
     private ArenaServer arena;
     

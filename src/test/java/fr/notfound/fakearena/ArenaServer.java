@@ -45,6 +45,11 @@ public class ArenaServer {
                     return arena.currentPractice(teamId);
                 }
             })
+            .handle(uris.opponent(gameId, teamId), new Jetty.StringHandler() {
+                @Override public String handle() {
+                    return arena.opponent(gameId, teamId);
+                }
+            })
             .handle(uris.status(gameId, teamId), new Jetty.StringHandler() {
                 @Override public String handle() {
                     return arena.status(gameId, teamId);
