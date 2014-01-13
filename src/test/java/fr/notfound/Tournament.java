@@ -2,6 +2,8 @@ package fr.notfound;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static fr.notfound.BattleDayParameters.*;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assume.assumeThat;
 
 import java.util.Collection;
 
@@ -40,6 +42,7 @@ public class Tournament {
     }
 
     @Test public void wins() {
+        assumeThat(BattleMode, is(true));
         application.playVersus(ArenaUri, TeamName, Password);
         application.showsGameWasWon();
     }

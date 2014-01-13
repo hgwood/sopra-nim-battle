@@ -2,6 +2,8 @@ package fr.notfound;
 
 import static fr.notfound.BattleDayParameters.*;
 import static java.util.Arrays.asList;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assume.assumeThat;
 
 import java.util.Collection;
 
@@ -33,6 +35,7 @@ public class PracticeAgainstBots {
     }
 
     @Test public void wins() {
+        assumeThat(BattleMode, is(true));
         application.playPractice(ArenaUri, TeamName, Password, aiLevel);
         application.showsGameWasWon();
     }
