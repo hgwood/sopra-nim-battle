@@ -16,6 +16,7 @@ import org.junit.Test;
  * Note that these tests are not designed to work against the real API 
  * (parameters are completely random).
  */
+@Ignore
 public class OfficialTestArenaHealthCheck {
 
     private final CliRunner application = new CliRunner(ReflectCliToOfficialTestArena.class);
