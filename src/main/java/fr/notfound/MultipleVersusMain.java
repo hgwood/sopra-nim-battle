@@ -22,10 +22,10 @@ public class MultipleVersusMain {
         CompositionRoot compositionRoot = new CompositionRoot();
         Arena arena = compositionRoot.arena(arenaUri);
         Team team = arena.join(teamName, password);
-        GameRunner runner = compositionRoot.gameRunner();
+        Player runner = compositionRoot.player();
         for (int i = 0; i < numberOfGamesToPlay; i++) {
             Game game = retrieveVersus(team);
-            System.out.println(runner.run(game).toString());
+            System.out.println(runner.playToCompletion(game).toString());
         }
     }
     

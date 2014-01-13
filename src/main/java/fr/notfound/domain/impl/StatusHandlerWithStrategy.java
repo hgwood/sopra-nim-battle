@@ -9,7 +9,7 @@ import fr.notfound.domain.*;
  * {@link GameStatus#Canceled}), or one of its move is rejected, which is
  * interpreted as an immediate defeat.
  */
-public class StatusHandlerWithStrategy implements GameRunner {
+public class StatusHandlerWithStrategy implements Player {
     
     private final Strategy strategy;
     
@@ -17,7 +17,7 @@ public class StatusHandlerWithStrategy implements GameRunner {
         this.strategy = strategy;
     }
 
-    @Override public GameStatus run(Game game) {
+    @Override public GameStatus playToCompletion(Game game) {
         GameStatus status = game.status();
         while (!status.isFinal) {
             if (status == GameStatus.YourTurn) {
