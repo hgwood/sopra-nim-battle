@@ -8,6 +8,7 @@ import fr.notfound.http.*;
 import fr.notfound.http.adapters.*;
 import fr.notfound.http.uri.*;
 import fr.notfound.strategies.AlwaysZeroZero;
+import fr.notfound.strategies.PickFirst;
 import fr.notfound.time.ThreadDelay;
 
 /**
@@ -51,7 +52,7 @@ public class CompositionRoot {
     }
     
     public Player practicePlayer() {
-        return player(new AlwaysZeroZero());
+        return player(new PickFirst());
     }
     
     public Player versusPlayer() {
