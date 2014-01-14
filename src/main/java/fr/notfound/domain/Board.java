@@ -9,7 +9,7 @@ import fr.notfound.meta.ValueType;
 @ValueType
 public class Board {
     
-    private final String representation;
+    public final String representation;
 
     public Board(String board) {
         this.representation = board;
@@ -17,6 +17,10 @@ public class Board {
     
     public Board apply(Move move) {
         return new Board(format("%s + %s", toString(), move.toString()));
+    }
+    
+    public int firstAvailable() {
+        return representation.indexOf("1");
     }
     
     @Override public boolean equals(Object obj) {
