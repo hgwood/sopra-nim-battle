@@ -1,5 +1,6 @@
 package fr.notfound.domain;
 
+import static java.lang.String.format;
 import fr.notfound.meta.ValueType;
 
 @ValueType
@@ -9,6 +10,10 @@ public class Board {
 
     public Board(String board) {
         this.representation = board;
+    }
+    
+    public Board apply(Move move) {
+        return new Board(format("%s + %s", toString(), move.toString()));
     }
     
     @Override public String toString() {
