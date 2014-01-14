@@ -3,6 +3,7 @@ package fr.notfound;
 import static com.google.common.collect.Lists.newArrayList;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
+import static fr.notfound.BattleDayParameters.*;
 
 import java.net.URI;
 import java.util.List;
@@ -24,14 +25,14 @@ public class ApplicationRunner {
      * Intended for real practice games.
      */
     public void playPractice(URI arenaUri, String teamName, String password, int aiLevel) {
-        runPractice(arenaUri.toString(), teamName, password, aiLevel, 50, 1, 50);
+        runPractice(arenaUri.toString(), teamName, password, aiLevel, RetryDelay, 1, RetryDelay);
     }
     
     /**
      * Intended for real versus games.
      */
     public void playVersus(URI arenaUri, String teamName, String password) {
-        runVersus(arenaUri.toString(), teamName, password, 50, 50, 50);
+        runVersus(arenaUri.toString(), teamName, password, RetryDelay, 50, RetryDelay);
     }
     
     /**
