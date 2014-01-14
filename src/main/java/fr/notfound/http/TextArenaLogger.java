@@ -35,7 +35,7 @@ public class TextArenaLogger implements TextArena {
 
     @Override public String newPractice(String level, String teamId) {
         logger.info("newPractice(level: \"{}\", teamId: \"{}\")", level, teamId);
-        String result = delegate.teamId(level, teamId);
+        String result = delegate.newPractice(level, teamId);
         logger.info("newPractice(level: \"{}\", teamId: \"{}\") -> \"{}\"", level, teamId, result);
         return result;
     }
