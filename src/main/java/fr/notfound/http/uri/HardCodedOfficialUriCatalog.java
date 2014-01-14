@@ -17,7 +17,7 @@ public class HardCodedOfficialUriCatalog implements ArenaUriCatalog {
     }
 
     @Override public URI teamId(String teamName, String password) {
-        return factory.get(format("player/getIdEquipe/%s/%s", teamName, password));
+        return factory.get(format("player/getIdEquipe/%s", teamName));
     }
 
     @Override public URI currentVersus(String teamId) {
