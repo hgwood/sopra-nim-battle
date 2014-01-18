@@ -11,7 +11,7 @@ public class BattleDayParameters {
     public static final URI ArenaUri = URI.create("http://192.168.2.2:8080/csnbattlearena/webservices/battle");
     public static final String TeamName = "404";
     public static final String Password = "";
-    public static final int NumberOfOpponentTeams = 4;
+    public static final int NumberOfOpponentTeams = 5;
     
     public static final int RetryDelay = 100;
 
