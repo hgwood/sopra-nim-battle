@@ -6,8 +6,8 @@ import fr.notfound.meta.ValueType;
 public class AiLevel {
     
     public static AiLevel of(int value) {
-        if (value < 0 || value > 5) {
-            throw new IllegalArgumentException("AI level must be in [0,5]");
+        if (value < 0 || value > 6) {
+            throw new IllegalArgumentException("AI level must be in [0,6]");
         }
         return new AiLevel(value);
     }

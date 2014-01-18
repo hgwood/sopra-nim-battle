@@ -23,7 +23,7 @@ public class PracticeAgainstBots {
 
     @Parameters(name = "Level {0}") 
     public static Collection<Object[]> data() {
-        return asList(new Object[][] { { 0 }, { 1 }, { 2 }, { 3 }, { 4 }, { 5 } });
+        return asList(new Object[][] { { 0 }, { 1 }, { 2 }, { 3 }, { 4 }, { 5 }, { 6 } });
     }
 
     private final int aiLevel;
