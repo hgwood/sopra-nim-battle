@@ -32,7 +32,7 @@ public class ApplicationRunner {
      * Intended for real versus games.
      */
     public void playVersus(URI arenaUri, String teamName, String password) {
-        runVersus(arenaUri.toString(), teamName, password, RetryDelay, 50, RetryDelay);
+        runVersus(arenaUri.toString(), teamName, password, RetryDelay, 10000, RetryDelay);
     }
     
     /**
