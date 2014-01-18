@@ -7,8 +7,7 @@ import fr.notfound.domain.impl.StatusHandlerWithStrategy;
 import fr.notfound.http.*;
 import fr.notfound.http.adapters.*;
 import fr.notfound.http.uri.*;
-import fr.notfound.strategies.AlwaysZeroZero;
-import fr.notfound.strategies.PickFirst;
+import fr.notfound.strategies.*;
 import fr.notfound.time.ThreadDelay;
 
 /**
@@ -52,11 +51,11 @@ public class CompositionRoot {
     }
     
     public Player practicePlayer() {
-        return player(new PickFirst());
+        return player(new PickFirstExceptLastGroupNuke());
     }
     
     public Player versusPlayer() {
-        return player(new AlwaysZeroZero());
+        return player(new PickFirstExceptLastGroupNuke());
     }
     
     private Player player(Strategy strategy) {
